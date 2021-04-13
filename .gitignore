@@ -1,0 +1,35 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+config/*.json
+
+# dependencies
+ui/node_modules
+
+# production
+ui/dist
+ui/.vscode
+
+# misc
+ui/.DS_Store
+ui/npm-debug.log*
+ui/yarn-error.log
+
+ui/coverage
+ui/.idea
+ui/yarn.lock
+ui/package-lock.json
+ui/*bak
+
+# visual studio code
+ui/.history
+ui/*.log
+
+ui/functions/mock
+ui/.temp/**
+
+# umi
+ui/.umi
+ui/.umi-production
+
+# screenshot
+ui/screenshot

@@ -1,0 +1,77 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~@/utils/utils.less';
+
+.coverCardList {
+  margin-bottom: -24px;
+
+  .card {
+    :global {
+      .ant-card-body {
+        height: 112px;
+        padding: 14px;
+      }
+      .ant-card-cover img {
+        height: 150px;
+        max-width: 100%;
+      }
+      .ant-card-meta-title {
+        font-size: 18px;
+        // height: 24px;
+        margin-bottom: 3px;
+        & > a {
+          color: @heading-color;
+          // display: inline-block;
+          max-width: 100%;
+          word-wrap:break-word;
+        }
+      }
+      .ant-card-meta-description {
+        height: 88px;
+        line-height: 24px;
+        overflow: hidden;
+        max-width: 100%;
+      }
+    }
+
+    &:hover {
+      :global {
+        .ant-card-meta-title > a {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  // .cardItemContent {
+  //   display: flex;
+  //   margin-top: 16px;
+  //   margin-bottom: -4px;
+  //   line-height: 20px;
+  //   height: 20px;
+  //   & > span {
+  //     color: @text-color-secondary;
+  //     flex: 1;
+  //     font-size: 12px;
+  //   }
+  //   .avatarList {
+  //     flex: 0 1 auto;
+  //   }
+  // }
+  .cardList {
+    margin-top: 24px;
+  }
+  :global {
+    .ant-list .ant-list-item-content-single {
+      max-width: 100%;
+    }
+  }
+}
+
+.newButton {
+    background-color: #fff;
+    border-color: @border-color-base;
+    border-radius: @border-radius-sm;
+    color: @text-color-secondary;
+    width: 100%;
+    height: 263px;
+  }

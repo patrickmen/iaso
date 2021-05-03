@@ -54,13 +54,13 @@ const CreateForm = Form.create()(props => {
   );
 });
 
-@connect(({ careers, loading }) => ({
-  careers,
-  loading: loading.models.careers,
+@connect(({ pipeline, loading }) => ({
+  pipeline,
+  loading: loading.models.pipeline,
 }))
 
 @Form.create()
-export default class Careers extends Component {
+export default class Pipeline extends Component {
   // state = {
   //   markdown: [],
   // }
@@ -78,7 +78,7 @@ export default class Careers extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'careers/fetch',
+      type: 'pipeline/fetch',
       payload: {},
     });
   };
@@ -121,7 +121,7 @@ export default class Careers extends Component {
   handleAdd = fields => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'careers/submit',
+      type: 'pipeline/submit',
       payload: {
         content: JSON.stringify(fields.content),
       },
@@ -134,7 +134,7 @@ export default class Careers extends Component {
     const { dispatch } = this.props;
     const { currentId } = this.state;
     dispatch({
-      type: 'careers/submit',
+      type: 'pipeline/submit',
       payload: {
         id: currentId,
         content: JSON.stringify(fields.content),
@@ -157,19 +157,19 @@ export default class Careers extends Component {
   handleDelete = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'careers/submit',
+      type: 'pipeline/submit',
       payload: {
         id: id,
       }
     });
-    message.success(formatMessage({ id: 'app.delete.success' }));
+    message.success(formatMessage({ id: 'app.update.success' }));
     this.initModal();
   };
 
   render() {
     // const { markdown } = this.state;
     const {
-      careers: { careers = [] },
+      pipeline: { pipeline = [] },
       loading,
     } = this.props;
 
@@ -196,9 +196,9 @@ export default class Careers extends Component {
         </div>
         <Container maxWidth="lg">
           <main>
-            { careers.length ? 
+            { pipeline.length ? 
               <Grid container>
-                { careers.map((post) => (
+                { pipeline.map((post) => (
                   <div key={JSON.parse(post.content).substring(0, 40)}>
                     <ReactMarkdown
                       className="markdown-body"
@@ -237,7 +237,8 @@ export default class Careers extends Component {
                         </Button> 
                       </Col>
                     </Row>
-                  </div>  
+                  </div> 
+                  
                 ))}
               </Grid> : 
               <div>

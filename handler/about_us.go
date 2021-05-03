@@ -187,7 +187,7 @@ func (a *aboutUs) Delete() gin.HandlerFunc {
 
 		aboutUsId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		_, err := a.MysqlClient.Where("id = ?", aboutUsId).Delete(dao.BNews{})
+		_, err := a.MysqlClient.Where("id = ?", aboutUsId).Delete(dao.BAboutUs{})
 		if err != nil {
 			response.Data = aboutUsDataList
 			logger.Errorf("Failed to delete the aboutUs record: %s", err.Error())

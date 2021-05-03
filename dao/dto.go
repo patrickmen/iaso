@@ -49,9 +49,9 @@ type ContactUsResponse struct {
 	Data      ContactUsData   `json:"data"`
 }
 
-type ResourcesResponse struct {
+type PipelineResponse struct {
 	Base
-	Data      []ResourceData          `json:"data"`
+	Data      []PipelineData          `json:"data"`
 }
 
 type NewsResponse struct {
@@ -62,6 +62,11 @@ type NewsResponse struct {
 type ProductsResponse struct {
 	Base
 	Data      []ProductData           `json:"data"`
+}
+
+type TechnologyResponse struct {
+	Base
+	Data      []TechnologyData        `json:"data"`
 }
 
 type CareersResponse struct {
@@ -82,6 +87,13 @@ type AboutUsData struct {
 	UpdatedAt         string   `json:"updatedAt"`
 }
 
+type TechnologyData struct {
+	Id                string   `json:"id"`
+	Content           string   `json:"content"`
+	CreatedAt         string   `json:"createdAt"`
+	UpdatedAt         string   `json:"updatedAt"`
+}
+
 type PartneringData struct{
 	Id                string   `json:"id"`
 	Content           string   `json:"content"`
@@ -89,11 +101,8 @@ type PartneringData struct{
 	UpdatedAt         string   `json:"updatedAt"`
 }
 
-type ResourceData struct {
+type PipelineData struct {
 	Id                string  `json:"id"`
-	Title             string  `json:"title"`
-	Cover             string  `json:"cover"`
-	Description       string  `json:"description"`
 	Content           string  `json:"content"`
 	CreatedAt         string  `json:"createdAt"`
 	UpdatedAt         string  `json:"updatedAt"`

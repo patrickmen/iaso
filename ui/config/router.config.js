@@ -12,39 +12,55 @@ export default [
       { path: '/', redirect: '/about-us' },
       {
         path: '/about-us',
-        name: 'ABOUT US',
+        name: 'ABOUT-US',
         component: './AboutUs/About',
       },
       {
-        path: '/products',
-        name: 'PRODUCTS',
+        path: '/technology',
+        name: 'TECHNOLOGY',
         routes: [
           {
-            path: '/products/summary',
-            name: 'SUMMARY',
-            component: './Products/Summary/Summary',
+            path: '/technology/target-protein-platform',
+            name: 'TARGET-PROTEIN-PLATFORM',
+            component: './Technology/TargetProtein',
           },
           {
-            path: '/products/products',
-            name: 'PRODUCTS',
-            component: './Products/Products/Products',
-          },
-          {
-            path: '/products/services',
-            name: 'SERVICES',
-            component: './Products/Services/Services',
+            path: '/technology/sbdd-platform',
+            name: 'SBDD-PLATFORM',
+            component: './Technology/SBDD',
           },
         ],
       },
       {
+        path: '/pipeline',
+        name: 'PIPELINE',
+        component: './Pipeline/Pipeline',
+      },
+      // {
+      //   path: '/products',
+      //   name: 'PRODUCTS',
+      //   routes: [
+      //     {
+      //       path: '/products/summary',
+      //       name: 'SUMMARY',
+      //       component: './Products/Summary/Summary',
+      //     },
+      //     {
+      //       path: '/products/products',
+      //       name: 'PRODUCTS',
+      //       component: './Products/Products/Products',
+      //     },
+      //     {
+      //       path: '/products/services',
+      //       name: 'SERVICES',
+      //       component: './Products/Services/Services',
+      //     },
+      //   ],
+      // },
+      {
         path: '/partnering',
         name: 'PARTNERING',
         component: './Partnering/Partnering',
-      },
-      {
-        path: '/resources',
-        name: 'RESOURCES',
-        component: './Resources/Resources',
       },
       {
         path: '/news',

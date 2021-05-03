@@ -13,13 +13,11 @@ import (
 )
 
 var (
-	configFile     string
 	logger         *zap.SugaredLogger
 	verbose        bool
 )
 
 func init() {
-	flag.StringVar(&configFile, "config", "", "Filepath of configuration")
 	flag.BoolVar(&verbose, "verbose", false, "Print log verbosely")
 	flag.Parse()
 }
@@ -31,6 +29,7 @@ func main() {
 		logger = log.RuntimeSugar
 	}
 	//Get the config
+	configFile := "config/config.json"
 	if err := config.Init(configFile, logger); err != nil {
 		logger.Fatalf("config init failed: %v", err)
 	}
@@ -49,7 +48,7 @@ func main() {
 	// connect to database
 	mysql.Client, err = mysql.NewMysqlClient(cfg.Mysql, logger)
 	if err != nil {
-		logger.Errorf("fail to connect to mysql client: %s", err.Error())
+		logger.Errorf("Fail to connect to mysql client: %s", err.Error())
 		return
 	}
 

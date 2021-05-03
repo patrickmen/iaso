@@ -12,6 +12,7 @@ export default class Preview extends Component {
   }
   componentDidMount() {
       let content = JSON.parse(window.opener.data.content);
+      console.log(content)
       this.setState({markdown: [...this.state.markdown, content]});   
   }
 

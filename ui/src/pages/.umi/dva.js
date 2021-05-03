@@ -26,9 +26,11 @@ app.model({ namespace: 'global', ...(require('/Users/jenson/go/src/iaso/ui/src/m
 app.model({ namespace: 'menu', ...(require('/Users/jenson/go/src/iaso/ui/src/models/menu.js').default) });
 app.model({ namespace: 'news', ...(require('/Users/jenson/go/src/iaso/ui/src/models/news.js').default) });
 app.model({ namespace: 'partnering', ...(require('/Users/jenson/go/src/iaso/ui/src/models/partnering.js').default) });
+app.model({ namespace: 'pipeline', ...(require('/Users/jenson/go/src/iaso/ui/src/models/pipeline.js').default) });
 app.model({ namespace: 'products', ...(require('/Users/jenson/go/src/iaso/ui/src/models/products.js').default) });
-app.model({ namespace: 'resources', ...(require('/Users/jenson/go/src/iaso/ui/src/models/resources.js').default) });
+app.model({ namespace: 'sbdd', ...(require('/Users/jenson/go/src/iaso/ui/src/models/sbdd.js').default) });
 app.model({ namespace: 'setting', ...(require('/Users/jenson/go/src/iaso/ui/src/models/setting.js').default) });
+app.model({ namespace: 'targetProtein', ...(require('/Users/jenson/go/src/iaso/ui/src/models/targetProtein.js').default) });
   return app;
 }
 

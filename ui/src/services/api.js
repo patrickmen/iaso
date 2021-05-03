@@ -35,6 +35,74 @@ export async function removeAboutUs(params) {
   });
 }
 
+// Target Protein API
+export async function queryTargetProteinList(params) {
+  return request(`/api/v1/technology/target-protein?${stringify(params)}`);
+}
+
+export async function addTargetProtein(params) {
+  return request(`/api/v1/technology/target-protein`, {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
+
+export async function updateTargetProtein(params) {
+  return request(`/api/v1/technology/target-protein/${params.id}`, {
+    method: 'PUT',
+    body: {
+      ...params,
+      method: 'update',
+    },
+  });
+}
+
+export async function removeTargetProtein(params) {
+  return request(`/api/v1/technology/target-protein/${params.id}`, {
+    method: 'DELETE',
+    body: {
+      method: 'delete',
+    },
+  });
+}
+
+// SBDD API
+export async function querySBDDList(params) {
+  return request(`/api/v1/technology/sbdd?${stringify(params)}`);
+}
+
+export async function addSBDD(params) {
+  return request(`/api/v1/technology/sbdd`, {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
+
+export async function updateSBDD(params) {
+  return request(`/api/v1/technology/sbdd/${params.id}`, {
+    method: 'PUT',
+    body: {
+      ...params,
+      method: 'update',
+    },
+  });
+}
+
+export async function removeSBDD(params) {
+  return request(`/api/v1/technology/sbdd/${params.id}`, {
+    method: 'DELETE',
+    body: {
+      method: 'delete',
+    },
+  });
+}
+
 // Products API
 export async function queryProductsList(params) {
   return request(`/api/v1/products?${stringify(params)}`);
@@ -103,13 +171,13 @@ export async function removePartnering(params) {
   });
 }
 
-// Resources API
-export async function queryResourcesList(params) {
-  return request(`/api/v1/resources?${stringify(params)}`);
+// Pipeline API
+export async function queryPipelineList(params) {
+  return request(`/api/v1/pipeline?${stringify(params)}`);
 }
 
-export async function addResource(params) {
-  return request(`/api/v1/resources`, {
+export async function addPipeline(params) {
+  return request(`/api/v1/pipeline`, {
     method: 'POST',
     body: {
       ...params,
@@ -118,8 +186,8 @@ export async function addResource(params) {
   });
 }
 
-export async function updateResource(params) {
-  return request(`/api/v1/resources/${params.id}`, {
+export async function updatePipeline(params) {
+  return request(`/api/v1/pipeline/${params.id}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -128,8 +196,8 @@ export async function updateResource(params) {
   });
 }
 
-export async function removeResource(params) {
-  return request(`/api/v1/resources/${params.id}`, {
+export async function removePipeline(params) {
+  return request(`/api/v1/pipeline/${params.id}`, {
     method: 'DELETE',
     body: {
       method: 'delete',

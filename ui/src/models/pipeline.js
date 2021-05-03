@@ -1,15 +1,15 @@
-import { queryResourcesList, addResource, removeResource, updateResource } from '@/services/api';
+import { queryPipelineList, addPipeline, removePipeline, updatePipeline } from '@/services/api';
 
 export default {
-  namespace: 'resources',
+  namespace: 'pipeline',
 
   state: {
-    resources: [],
+    pipeline: [],
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryResourcesList, payload);
+      const response = yield call(queryPipelineList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response.data) ? response.data : [],
@@ -18,9 +18,9 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 1 ? removeResource : updateResource;
+        callback = Object.keys(payload).length === 1 ? removePipeline : updatePipeline;
       } else {
-        callback = addResource;
+        callback = addPipeline;
       }
       const response = yield call(callback, payload); // post
       yield put({
@@ -34,7 +34,7 @@ export default {
     queryList(state, action) {
       return {
         ...state,
-        resources: action.payload,
+        pipeline: action.payload,
       };
     },
   },

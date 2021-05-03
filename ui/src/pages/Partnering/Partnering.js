@@ -115,7 +115,7 @@ export default class Partnering extends Component {
         content: JSON.stringify(fields.content),
     }
     window["data"] = data;
-    window.open(location.origin + `/preview/${new Date().getTime()}`)
+    window.open(location.origin + `/#/preview/${new Date().getTime()}`)
   };
 
   handleAdd = fields => {

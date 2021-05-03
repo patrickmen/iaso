@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import logo from '@/assets/img/logo.png';
 import { submitLogin, errorAnalysis } from '@/services';
 import styles from './Login.less';
 
@@ -95,13 +96,13 @@ export default function SignIn(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        {/* <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar>
-        {/* <img alt="logo" className={styles.logo} src="@/assets/img/logo.png" /> */}
-        <Typography component="h1" variant="h5">
+        </Avatar> */}
+        <img alt="logo" className={styles.logo} src={logo} />
+        {/* <Typography component="h1" variant="h5">
           FLY BIO
-        </Typography>
+        </Typography> */}
         <form className={classes.form} id="form" method="post">
           <TextField
             variant="outlined"

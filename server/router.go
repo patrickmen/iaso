@@ -71,14 +71,14 @@ func Init(logger *zap.SugaredLogger, verbose bool, distFilePath string) *gin.Eng
 	}
 
 	staticFilePath := path.Join(distFilePath)
-	faviconPath := path.Join(distFilePath, "/favicon.png")
+	faviconPath := path.Join(distFilePath, "/favicon.ico")
 	entryHtmlPath := path.Join(distFilePath, "/index.html")
 	routerLogger.Debugf("The UI static file path: %s", staticFilePath)
 	routerLogger.Debugf("The UI favicon.png path: %s", faviconPath)
 	routerLogger.Debugf("The UI html path: %s", entryHtmlPath)
 
 	router.Static("/dist", staticFilePath)
-	//router.StaticFile("/favicon.png", faviconPath)
+	router.StaticFile("/favicon.ico", faviconPath)
 	router.LoadHTMLGlob(entryHtmlPath)
 
 	//router.Use(static.Serve("/dist", static.LocalFile(distFilePath, false)))
@@ -95,79 +95,93 @@ func Init(logger *zap.SugaredLogger, verbose bool, distFilePath string) *gin.Eng
 
 	// admin info handler
 	//TODO: all users info handler
-	userv1Group := v1Group.Group("/users")
+	userV1Group := v1Group.Group("/users")
 	users := handler.NewUsers(logger)
 	{
-		userv1Group.GET("/:username", users.Get())
-		userv1Group.POST("", users.Login())
+		userV1Group.GET("/:username", users.Get())
+		userV1Group.POST("", users.Login())
 	}
 
 	//about us handler
-	aboutUsv1Group := v1Group.Group("/about-us")
+	aboutUsV1Group := v1Group.Group("/about-us")
 	aboutUs := handler.NewAboutUs(logger)
 	{
-		aboutUsv1Group.GET("", aboutUs.List())
-		aboutUsv1Group.POST("", aboutUs.Create())
-		aboutUsv1Group.PUT("/:id", aboutUs.Update())
-		aboutUsv1Group.DELETE("/:id", aboutUs.Delete())
+		aboutUsV1Group.GET("", aboutUs.List())
+		aboutUsV1Group.POST("", aboutUs.Create())
+		aboutUsV1Group.PUT("/:id", aboutUs.Update())
+		aboutUsV1Group.DELETE("/:id", aboutUs.Delete())
 	}
 
-	//products handler
-	productsv1Group := v1Group.Group("/products")
-	products := handler.NewProducts(logger)
+	//technology handler
+	technologyV1Group := v1Group.Group("/technology")
+	technology := handler.NewTechnology(logger)
 	{
-		productsv1Group.GET("", products.List())
-		productsv1Group.POST("", products.Create())
-		productsv1Group.PUT("/:id", products.Update())
-		productsv1Group.DELETE("/:id", products.Delete())
-
+		technologyV1Group.GET("/target-protein", technology.TargetProteinList())
+		technologyV1Group.GET("/sbdd", technology.SBDDList())
+		technologyV1Group.POST("/target-protein", technology.TargetProteinCreate())
+		technologyV1Group.POST("/sbdd", technology.SBDDCreate())
+		technologyV1Group.PUT("/target-protein/:id", technology.TargetProteinUpdate())
+		technologyV1Group.PUT("/sbdd/:id", technology.SBDDUpdate())
+		technologyV1Group.DELETE("/target-protein/:id", technology.TargetProteinDelete())
+		technologyV1Group.DELETE("/sbdd/:id", technology.SBDDDelete())
 	}
+
+	////products handler
+	//productsV1Group := v1Group.Group("/products")
+	//products := handler.NewProducts(logger)
+	//{
+	//	productsV1Group.GET("", products.List())
+	//	productsV1Group.POST("", products.Create())
+	//	productsV1Group.PUT("/:id", products.Update())
+	//	productsV1Group.DELETE("/:id", products.Delete())
+	//
+	//}
 
 	//partnering handler
-	partneringv1Group := v1Group.Group("/partnering")
+	partneringV1Group := v1Group.Group("/partnering")
 	partnering := handler.NewPartnering(logger)
 	{
-		partneringv1Group.GET("", partnering.List())
-		partneringv1Group.PUT("/:id", partnering.Update())
-		partneringv1Group.DELETE("/:id", partnering.Delete())
-		partneringv1Group.POST("", partnering.Create())
+		partneringV1Group.GET("", partnering.List())
+		partneringV1Group.PUT("/:id", partnering.Update())
+		partneringV1Group.DELETE("/:id", partnering.Delete())
+		partneringV1Group.POST("", partnering.Create())
 	}
 
-	//resources handler
-	resourcesv1Group := v1Group.Group("/resources")
-	resources := handler.NewResources(logger)
+	//pipeline handler
+	pipelineV1Group := v1Group.Group("/pipeline")
+	pipeline := handler.NewPipeline(logger)
 	{
-		resourcesv1Group.GET("", resources.List())
-		resourcesv1Group.POST("", resources.Create())
-		resourcesv1Group.PUT("/:id", resources.Update())
-		resourcesv1Group.DELETE("/:id", resources.Delete())
+		pipelineV1Group.GET("", pipeline.List())
+		pipelineV1Group.POST("", pipeline.Create())
+		pipelineV1Group.PUT("/:id", pipeline.Update())
+		pipelineV1Group.DELETE("/:id", pipeline.Delete())
 	}
 
 	//news handler
-	newsv1Group := v1Group.Group("/news")
+	newsV1Group := v1Group.Group("/news")
 	news := handler.NewNews(logger)
 	{
-		newsv1Group.GET("", news.List())
-		newsv1Group.PUT("/:id",news.Update())
-		newsv1Group.DELETE("/:id", news.Delete())
-		newsv1Group.POST("", news.Create())
+		newsV1Group.GET("", news.List())
+		newsV1Group.PUT("/:id",news.Update())
+		newsV1Group.DELETE("/:id", news.Delete())
+		newsV1Group.POST("", news.Create())
 	}
 
 	//careers handler
-	careersv1Group := v1Group.Group("/careers")
+	careersV1Group := v1Group.Group("/careers")
 	careers := handler.NewCareers(logger)
 	{
-		careersv1Group.GET("", careers.List())
-		careersv1Group.PUT("/:id",careers.Update())
-		careersv1Group.DELETE("/:id", careers.Delete())
-		careersv1Group.POST("", careers.Create())
+		careersV1Group.GET("", careers.List())
+		careersV1Group.PUT("/:id",careers.Update())
+		careersV1Group.DELETE("/:id", careers.Delete())
+		careersV1Group.POST("", careers.Create())
 	}
 
 	//contact us handler
-	contactUsv1Group := v1Group.Group("/contact-us")
+	contactUsV1Group := v1Group.Group("/contact-us")
 	contactUs := handler.NewContactUs(logger)
 	{
-		contactUsv1Group.POST("", contactUs.Create())
+		contactUsV1Group.POST("", contactUs.Create())
 	}
 
 	////load html

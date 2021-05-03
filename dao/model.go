@@ -21,6 +21,20 @@ type BAboutUs struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
+type BTargetProtein struct {
+	Id                int64
+	Content           string    `xorm:"content"`
+	CreatedAt         time.Time `xorm:"created_time"`
+	UpdatedAt         time.Time `xorm:"updated_time"`
+}
+
+type BSBDD struct {
+	Id                int64
+	Content           string    `xorm:"content"`
+	CreatedAt         time.Time `xorm:"created_time"`
+	UpdatedAt         time.Time `xorm:"updated_time"`
+}
+
 type BProducts struct {
 	Id                int64
 	Title             string  `xorm:"title"`
@@ -31,11 +45,8 @@ type BProducts struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
-type BResources struct {
+type BPipeline struct {
 	Id                int64
-	Title             string  `xorm:"title"`
-	Cover             string  `xorm:"cover"`
-	Description       string  `xorm:"description"`
 	Content           string  `xorm:"content"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`

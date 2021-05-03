@@ -121,7 +121,7 @@ class NewsList extends Component {
           content: JSON.stringify(fields.content),
       }
       window["data"] = data;
-      window.open(location.origin + `/preview/${fields.title}`)
+      window.open(location.origin + `/#/preview/${fields.title}`)
   };
 
   handleAdd = fields => {
@@ -230,7 +230,7 @@ class NewsList extends Component {
         >
           <List
             size="large"
-            key="test"
+            key="news"
             loading={news.length === 0 ? loading : false}
             rowKey="id"
             itemLayout="vertical"

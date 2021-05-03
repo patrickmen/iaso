@@ -11,7 +11,7 @@ const FooterView = () => (
         {
           key: 'app.footer.description',
           title: formatMessage({ id: 'app.footer.description' }),
-          href: 'https://pro.ant.design',
+          href: 'https://github.com/patrickmen/iaso',
           blankTarget: true,
         },
         {

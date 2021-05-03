@@ -44,7 +44,7 @@ const routes = [
       },
       {
         path: '/about-us',
-        name: 'ABOUT US',
+        name: 'ABOUT-US',
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () =>
@@ -56,46 +56,33 @@ const routes = [
         exact: true,
       },
       {
-        path: '/products',
-        name: 'PRODUCTS',
+        path: '/technology',
+        name: 'TECHNOLOGY',
         routes: [
           {
-            path: '/products/summary',
-            name: 'SUMMARY',
+            path: '/technology/target-protein-platform',
+            name: 'TARGET-PROTEIN-PLATFORM',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Products/Summary/Summary'),
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/TargetProtein'),
                   LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
-              : require('../Products/Summary/Summary').default,
+              : require('../Technology/TargetProtein').default,
             exact: true,
           },
           {
-            path: '/products/products',
-            name: 'PRODUCTS',
+            path: '/technology/sbdd-platform',
+            name: 'SBDD-PLATFORM',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Products/Products/Products'),
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/SBDD'),
                   LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
-              : require('../Products/Products/Products').default,
-            exact: true,
-          },
-          {
-            path: '/products/services',
-            name: 'SERVICES',
-            component: __IS_BROWSER
-              ? _dvaDynamic({
-                  component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Products/Services/Services'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
-                    .default,
-                })
-              : require('../Products/Services/Services').default,
+              : require('../Technology/SBDD').default,
             exact: true,
           },
           {
@@ -109,6 +96,19 @@ const routes = [
         ],
       },
       {
+        path: '/pipeline',
+        name: 'PIPELINE',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              component: () =>
+                import(/* webpackChunkName: "p__Pipeline__Pipeline" */ '../Pipeline/Pipeline'),
+              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Pipeline/Pipeline').default,
+        exact: true,
+      },
+      {
         path: '/partnering',
         name: 'PARTNERING',
         component: __IS_BROWSER
@@ -119,19 +119,6 @@ const routes = [
                 .default,
             })
           : require('../Partnering/Partnering').default,
-        exact: true,
-      },
-      {
-        path: '/resources',
-        name: 'RESOURCES',
-        component: __IS_BROWSER
-          ? _dvaDynamic({
-              component: () =>
-                import(/* webpackChunkName: "p__Resources__Resources" */ '../Resources/Resources'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
-                .default,
-            })
-          : require('../Resources/Resources').default,
         exact: true,
       },
       {

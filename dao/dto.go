@@ -8,6 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	EN   = "en-US"
+	CN   = "zh-CN"
+)
+
 type Interface interface {
 	Get()       *Base
 	Set(Base)

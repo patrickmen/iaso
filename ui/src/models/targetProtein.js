@@ -18,7 +18,7 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 1 ? removeTargetProtein : updateTargetProtein;
+        callback = Object.keys(payload).length === 2 ? removeTargetProtein : updateTargetProtein;
       } else {
         callback = addTargetProtein;
       }

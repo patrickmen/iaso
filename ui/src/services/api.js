@@ -7,7 +7,7 @@ export async function queryAboutUsList(params) {
 }
 
 export async function addAboutUs(params) {
-  return request(`/api/v1/about-us`, {
+  return request(`/api/v1/about-us?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -17,7 +17,7 @@ export async function addAboutUs(params) {
 }
 
 export async function updateAboutUs(params) {
-  return request(`/api/v1/about-us/${params.id}`, {
+  return request(`/api/v1/about-us/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -27,7 +27,7 @@ export async function updateAboutUs(params) {
 }
 
 export async function removeAboutUs(params) {
-  return request(`/api/v1/about-us/${params.id}`, {
+  return request(`/api/v1/about-us/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -41,7 +41,7 @@ export async function queryTargetProteinList(params) {
 }
 
 export async function addTargetProtein(params) {
-  return request(`/api/v1/technology/target-protein`, {
+  return request(`/api/v1/technology/target-protein?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -51,7 +51,7 @@ export async function addTargetProtein(params) {
 }
 
 export async function updateTargetProtein(params) {
-  return request(`/api/v1/technology/target-protein/${params.id}`, {
+  return request(`/api/v1/technology/target-protein/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -61,7 +61,7 @@ export async function updateTargetProtein(params) {
 }
 
 export async function removeTargetProtein(params) {
-  return request(`/api/v1/technology/target-protein/${params.id}`, {
+  return request(`/api/v1/technology/target-protein/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -75,7 +75,7 @@ export async function querySBDDList(params) {
 }
 
 export async function addSBDD(params) {
-  return request(`/api/v1/technology/sbdd`, {
+  return request(`/api/v1/technology/sbdd?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -85,7 +85,7 @@ export async function addSBDD(params) {
 }
 
 export async function updateSBDD(params) {
-  return request(`/api/v1/technology/sbdd/${params.id}`, {
+  return request(`/api/v1/technology/sbdd/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -95,7 +95,7 @@ export async function updateSBDD(params) {
 }
 
 export async function removeSBDD(params) {
-  return request(`/api/v1/technology/sbdd/${params.id}`, {
+  return request(`/api/v1/technology/sbdd/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -109,7 +109,7 @@ export async function queryProductsList(params) {
 }
 
 export async function addProduct(params) {
-  return request(`/api/v1/products`, {
+  return request(`/api/v1/products?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -119,7 +119,7 @@ export async function addProduct(params) {
 }
 
 export async function updateProduct(params) {
-  return request(`/api/v1/products/${params.id}`, {
+  return request(`/api/v1/products/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -129,7 +129,7 @@ export async function updateProduct(params) {
 }
 
 export async function removeProduct(params) {
-  return request(`/api/v1/products/${params.id}`, {
+  return request(`/api/v1/products/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -143,7 +143,7 @@ export async function queryPartneringList(params) {
 }
 
 export async function addPartnering(params) {
-  return request(`/api/v1/partnering`, {
+  return request(`/api/v1/partnering?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -153,7 +153,7 @@ export async function addPartnering(params) {
 }
 
 export async function updatePartnering(params) {
-  return request(`/api/v1/partnering/${params.id}`, {
+  return request(`/api/v1/partnering/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -163,7 +163,7 @@ export async function updatePartnering(params) {
 }
 
 export async function removePartnering(params) {
-  return request(`/api/v1/partnering/${params.id}`, {
+  return request(`/api/v1/partnering/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -177,7 +177,7 @@ export async function queryPipelineList(params) {
 }
 
 export async function addPipeline(params) {
-  return request(`/api/v1/pipeline`, {
+  return request(`/api/v1/pipeline?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -187,7 +187,7 @@ export async function addPipeline(params) {
 }
 
 export async function updatePipeline(params) {
-  return request(`/api/v1/pipeline/${params.id}`, {
+  return request(`/api/v1/pipeline/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -197,7 +197,7 @@ export async function updatePipeline(params) {
 }
 
 export async function removePipeline(params) {
-  return request(`/api/v1/pipeline/${params.id}`, {
+  return request(`/api/v1/pipeline/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -211,7 +211,7 @@ export async function queryNewsList(params) {
 }
 
 export async function addNews(params) {
-  return request(`/api/v1/news`, {
+  return request(`/api/v1/news?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -221,7 +221,7 @@ export async function addNews(params) {
 }
 
 export async function updateNews(params) {
-  return request(`/api/v1/news/${params.id}`, {
+  return request(`/api/v1/news/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -231,7 +231,7 @@ export async function updateNews(params) {
 }
 
 export async function removeNews(params) {
-  return request(`/api/v1/news/${params.id}`, {
+  return request(`/api/v1/news/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -245,7 +245,7 @@ export async function queryCareersList(params) {
 }
 
 export async function addCareers(params) {
-  return request(`/api/v1/careers`, {
+  return request(`/api/v1/careers?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -255,7 +255,7 @@ export async function addCareers(params) {
 }
 
 export async function updateCareers(params) {
-  return request(`/api/v1/careers/${params.id}`, {
+  return request(`/api/v1/careers/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -265,7 +265,7 @@ export async function updateCareers(params) {
 }
 
 export async function removeCareers(params) {
-  return request(`/api/v1/careers/${params.id}`, {
+  return request(`/api/v1/careers/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',

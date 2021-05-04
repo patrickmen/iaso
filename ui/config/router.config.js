@@ -29,6 +29,9 @@ export default [
             name: 'SBDD-PLATFORM',
             component: './Technology/SBDD',
           },
+          {
+            component: '404',
+          },
         ],
       },
       {

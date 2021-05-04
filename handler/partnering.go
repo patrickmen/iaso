@@ -41,9 +41,10 @@ func (pt *partnering) List() gin.HandlerFunc {
 		)
 
 		logger := pt.Logger.Named("GetPartneringInfo")
+		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := "select * from b_partnering;"
+		sql := fmt.Sprintf("select * from b_partnering where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -68,9 +69,10 @@ func (pt *partnering) Create() gin.HandlerFunc {
 		)
 
 		logger := pt.Logger.Named("CreatePartneringInfo")
+		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := "select * from b_partnering;"
+		sql := fmt.Sprintf("select * from b_partnering where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -89,6 +91,7 @@ func (pt *partnering) Create() gin.HandlerFunc {
 
 		record := &dao.BPartnering{
 			Content:     partneringData.Content,
+			Lang:        lang,
 		}
 		_, err := pt.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -114,9 +117,10 @@ func (pt *partnering) Update() gin.HandlerFunc {
 		)
 
 		logger := pt.Logger.Named("UpdatePartneringInfo")
+		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := "select * from b_partnering;"
+		sql := fmt.Sprintf("select * from b_partnering where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -137,6 +141,7 @@ func (pt *partnering) Update() gin.HandlerFunc {
 
 		record := &dao.BPartnering{
 			Content:      partneringData.Content,
+			Lang:         lang,
 		}
 
 		_, err := pt.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -172,9 +177,10 @@ func (pt *partnering) Delete() gin.HandlerFunc {
 			response           dao.PartneringResponse
 		)
 		logger := pt.Logger.Named("DeletePartneringInfo")
+		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := "select * from b_partnering;"
+		sql := fmt.Sprintf("select * from b_partnering where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{

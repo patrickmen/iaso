@@ -1,6 +1,7 @@
 package server
 
 import (
+	"iaso/config"
 	"net/http"
 	"os"
 	"os/signal"
@@ -39,17 +40,17 @@ func SetupSignalHandler() (stopCh <-chan struct{}) {
 }
 
 // fix cross domain problem
-func AllowCors() gin.HandlerFunc {
+func AllowCors(crossConfig config.CrossConfig) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		method := c.Request.Method
 		origin := c.Request.Header.Get("Origin")
 		if origin != "" {
 			c.Writer.Header().Set("Access-Control-Allow-Origin", origin)
-			c.Header("Access-Control-Allow-Origin", "http://localhost:8080")
-			c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
-			c.Header("Access-Control-Allow-Headers", "Authorization, Content-Length, Content-Type, X-CSRF-Token, Token, session")
-			c.Header("Access-Control-Expose-Headers", "Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Cache-Control, Content-Language, Content-Type")
-			c.Header("Access-Control-Allow-Credentials", "true")
+			c.Header("Access-Control-Allow-Origin", crossConfig.AccessControlAllowOrigin)
+			c.Header("Access-Control-Allow-Methods", crossConfig.AccessControlAllowMethods)
+			c.Header("Access-Control-Allow-Headers", crossConfig.AccessControlAllowHeaders)
+			c.Header("Access-Control-Expose-Headers", crossConfig.AccessControlExposeHeaders)
+			c.Header("Access-Control-Allow-Credentials", crossConfig.AccessControlAllowCredentials)
 		}
 
 		if method == "OPTIONS" {
@@ -59,12 +60,12 @@ func AllowCors() gin.HandlerFunc {
 	}
 }
 
-func Init(logger *zap.SugaredLogger, verbose bool, distFilePath string) *gin.Engine {
+func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfig, distFilePath string) *gin.Engine {
 	routerLogger := logger.Named("Router")
 	router := gin.New()
 	router.Use(gin.Recovery())
 	router.Use(log.AccessLoggerForGin())
-	//router.Use(AllowCors())
+	//router.Use(AllowCors(crossConfig))
 
 	if !verbose {
 		gin.SetMode(gin.ReleaseMode)
@@ -73,12 +74,14 @@ func Init(logger *zap.SugaredLogger, verbose bool, distFilePath string) *gin.Eng
 	staticFilePath := path.Join(distFilePath)
 	faviconPath := path.Join(distFilePath, "/favicon.ico")
 	entryHtmlPath := path.Join(distFilePath, "/index.html")
+	svcWorkerPath := path.Join(distFilePath, "/service-worker.js")
 	routerLogger.Debugf("The UI static file path: %s", staticFilePath)
 	routerLogger.Debugf("The UI favicon.png path: %s", faviconPath)
 	routerLogger.Debugf("The UI html path: %s", entryHtmlPath)
 
 	router.Static("/dist", staticFilePath)
 	router.StaticFile("/favicon.ico", faviconPath)
+	router.StaticFile("/service-worker.js", svcWorkerPath)
 	router.LoadHTMLGlob(entryHtmlPath)
 
 	//router.Use(static.Serve("/dist", static.LocalFile(distFilePath, false)))

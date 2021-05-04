@@ -41,9 +41,10 @@ func (p *pipeline) List() gin.HandlerFunc {
 		)
 
 		logger := p.Logger.Named("GetPipelineInfo")
+		lang := c.Query("lang")
 
 		pipelineDataList := make([]dao.PipelineData, 0)
-		sql := "select * from b_pipeline;"
+		sql := fmt.Sprintf("select * from b_pipeline where lang='%s';", lang)
 		records, _ := p.MysqlClient.Query(sql)
 		for _, record := range records {
 			pipelineData = dao.PipelineData{
@@ -68,9 +69,10 @@ func (p *pipeline) Create() gin.HandlerFunc {
 		)
 
 		logger := p.Logger.Named("CreatePipelineInfo")
+		lang := c.Query("lang")
 
 		pipelineDataList := make([]dao.PipelineData, 0)
-		sql := "select * from b_pipeline;"
+		sql := fmt.Sprintf("select * from b_pipeline where lang='%s';", lang)
 		records, _ := p.MysqlClient.Query(sql)
 		for _, record := range records {
 			pipelineData = dao.PipelineData{
@@ -89,6 +91,7 @@ func (p *pipeline) Create() gin.HandlerFunc {
 
 		record := &dao.BAboutUs{
 			Content:     pipelineData.Content,
+			Lang:        lang,
 		}
 		_, err := p.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -115,9 +118,10 @@ func (p *pipeline) Update() gin.HandlerFunc {
 		)
 
 		logger := p.Logger.Named("UpdatePipelineInfo")
+		lang := c.Query("lang")
 
 		pipelineDataList := make([]dao.PipelineData, 0)
-		sql := "select * from b_pipeline;"
+		sql := fmt.Sprintf("select * from b_pipeline where lang='%s';", lang)
 		records, _ := p.MysqlClient.Query(sql)
 		for _, record := range records {
 			pipelineData = dao.PipelineData{
@@ -138,6 +142,7 @@ func (p *pipeline) Update() gin.HandlerFunc {
 
 		record := &dao.BPipeline{
 			Content:      pipelineData.Content,
+			Lang:         lang,
 		}
 
 		_, err := p.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -173,9 +178,10 @@ func (p *pipeline) Delete() gin.HandlerFunc {
 			response           dao.PipelineResponse
 		)
 		logger := p.Logger.Named("DeletePipelineDataInfo")
+		lang := c.Query("lang")
 
 		pipelineDataList := make([]dao.PipelineData, 0)
-		sql := "select * from b_pipeline;"
+		sql := fmt.Sprintf("select * from b_pipeline where lang='%s';", lang)
 		records, _ := p.MysqlClient.Query(sql)
 		for _, record := range records {
 			pipelineData = dao.PipelineData{

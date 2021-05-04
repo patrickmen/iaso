@@ -1,6 +1,6 @@
 // import React, { PureComponent, Fragment } from 'react';
 // import CssBaseline from '@material-ui/core/CssBaseline';
-// import { formatMessage } from 'umi/locale';
+// import { formatMessage, getLocale } from 'umi/locale';
 // import { connect } from 'dva';
 // import { Card, List, Button, Icon, Input, Modal, Form, message } from 'antd';
 
@@ -82,6 +82,7 @@
 // class ProductsList extends PureComponent {
 //   state = {
 //     modalVisible: false,
+//     currentLang: getLocale(),
 //   };
 
 //   componentDidMount() {
@@ -89,6 +90,7 @@
 //     dispatch({
 //       type: 'products/fetch',
 //       payload: {
+//         lang: this.state.currentLang,
 //       },
 //     });
 //   };
@@ -140,6 +142,7 @@
 //         cover: fields.cover,
 //         description: fields.description,
 //         content: JSON.stringify(fields.content),
+//         lang: this.state.currentLang,
 //       },
 //     });
 //     message.success(formatMessage({ id: 'app.add.success' }));
@@ -157,6 +160,7 @@
 //         cover: fields.cover,
 //         description: fields.description,
 //         content: JSON.stringify(fields.content),
+//         lang: this.state.currentLang,
 //       }
 //     });
 //     message.success(formatMessage({ id: 'app.update.success' }));
@@ -179,6 +183,7 @@
 //       type: 'products/submit',
 //       payload: {
 //         id: id,
+//         lang: this.state.currentLang,
 //       }
 //     });
 //     message.success(formatMessage({ id: 'app.delete.success' }));

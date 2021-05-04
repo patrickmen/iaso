@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Input, Modal, Form, Row, message, Col } from 'antd';
 import { connect } from 'dva';
-import { formatMessage } from 'umi/locale';
+import { formatMessage, getLocale } from 'umi/locale';
 import 'github-markdown-css';
 import ReactMarkdown from 'react-markdown';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -73,13 +73,16 @@ export default class Partnering extends Component {
   // };
   state = {
     modalVisible: false,
+    currentLang: getLocale(),
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
       type: 'partnering/fetch',
-      payload: {},
+      payload: {
+        lang: this.state.currentLang,
+      },
     });
   };
 
@@ -124,6 +127,7 @@ export default class Partnering extends Component {
       type: 'partnering/submit',
       payload: {
         content: JSON.stringify(fields.content),
+        lang: this.state.currentLang,
       },
     });
     message.success(formatMessage({ id: 'app.add.success' }));
@@ -138,6 +142,7 @@ export default class Partnering extends Component {
       payload: {
         id: currentId,
         content: JSON.stringify(fields.content),
+        lang: this.state.currentLang,
       }
     });
     message.success(formatMessage({ id: 'app.update.success' }));
@@ -160,6 +165,7 @@ export default class Partnering extends Component {
       type: 'partnering/submit',
       payload: {
         id: id,
+        lang: this.state.currentLang,
       }
     });
     message.success(formatMessage({ id: 'app.delete.success' }));

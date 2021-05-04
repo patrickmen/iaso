@@ -41,9 +41,10 @@ func (cr *careers) List() gin.HandlerFunc {
 		)
 
 		logger := cr.Logger.Named("GetCareerInfo")
+		lang := c.Query("lang")
 
 		careerDataList := make([]dao.CareerData, 0)
-		sql := "select * from b_careers;"
+		sql := fmt.Sprintf("select * from b_careers where lang='%s';", lang)
 		records, _ := cr.MysqlClient.Query(sql)
 		for _, record := range records {
 			careerData = dao.CareerData{
@@ -68,9 +69,10 @@ func (cr *careers) Create() gin.HandlerFunc {
 		)
 
 		logger := cr.Logger.Named("CreateCareerInfo")
+		lang := c.Query("lang")
 
 		careerDataList := make([]dao.CareerData, 0)
-		sql := "select * from b_careers;"
+		sql := fmt.Sprintf("select * from b_careers where lang='%s';", lang)
 		records, _ := cr.MysqlClient.Query(sql)
 		for _, record := range records {
 			careerData = dao.CareerData{
@@ -89,6 +91,7 @@ func (cr *careers) Create() gin.HandlerFunc {
 
 		record := &dao.BCareers{
 			Content:     careerData.Content,
+			Lang:        lang,
 		}
 		_, err := cr.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -114,9 +117,10 @@ func (cr *careers) Update() gin.HandlerFunc {
 		)
 
 		logger := cr.Logger.Named("UpdateCareerInfo")
+		lang := c.Query("lang")
 
 		careerDataList := make([]dao.CareerData, 0)
-		sql := "select * from b_careers;"
+		sql := fmt.Sprintf("select * from b_careers where lang='%s';", lang)
 		records, _ := cr.MysqlClient.Query(sql)
 		for _, record := range records {
 			careerData = dao.CareerData{
@@ -137,6 +141,7 @@ func (cr *careers) Update() gin.HandlerFunc {
 
 		record := &dao.BCareers{
 			Content:      careerData.Content,
+			Lang:        lang,
 		}
 
 		_, err := cr.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -172,9 +177,10 @@ func (cr *careers) Delete() gin.HandlerFunc {
 			response       dao.CareersResponse
 		)
 		logger := cr.Logger.Named("DeleteCareerInfo")
+		lang := c.Query("lang")
 
 		careerDataList := make([]dao.CareerData, 0)
-		sql := "select * from b_careers;"
+		sql := fmt.Sprintf("select * from b_careers where lang='%s';", lang)
 		records, _ := cr.MysqlClient.Query(sql)
 		for _, record := range records {
 			careerData = dao.CareerData{

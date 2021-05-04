@@ -21,7 +21,7 @@
   .main {
     display: flex;
     height: @layout-header-height;
-    padding-left: 24px;
+    // padding-left: 24px;
     &.wide {
       max-width: 1200px;
       margin: auto;
@@ -30,6 +30,8 @@
     .left {
       flex: 1;
       display: flex;
+      align-items: center;
+      justify-content: space-evenly;
     }
     .right {
       width: 324px;
@@ -43,6 +45,7 @@
   position: relative;
   line-height: @layout-header-height;
   transition: all 0.3s;
+  margin-left: -250px;
   overflow: hidden;
   img {
     display: inline-block;

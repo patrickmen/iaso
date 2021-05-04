@@ -43,9 +43,10 @@ func (t *technology) TargetProteinList() gin.HandlerFunc {
 		)
 
 		logger := t.Logger.Named("GetTargetProteinPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_target_protein;"
+		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -70,9 +71,10 @@ func (t *technology) SBDDList() gin.HandlerFunc {
 		)
 
 		logger := t.Logger.Named("GetSBDDPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_sbdd;"
+		sql := fmt.Sprintf("select * from b_sbdd where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -97,9 +99,10 @@ func (t *technology) TargetProteinCreate() gin.HandlerFunc {
 		)
 
 		logger := t.Logger.Named("CreateTargetProteinPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_target_protein;"
+		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -118,6 +121,7 @@ func (t *technology) TargetProteinCreate() gin.HandlerFunc {
 
 		record := &dao.BTargetProtein{
 			Content:     technologyData.Content,
+			Lang:        lang,
 		}
 		_, err := t.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -144,9 +148,10 @@ func (t *technology) SBDDCreate() gin.HandlerFunc {
 		)
 
 		logger := t.Logger.Named("CreateSBDDPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_sbdd;"
+		sql := fmt.Sprintf("select * from b_sbdd where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -165,6 +170,7 @@ func (t *technology) SBDDCreate() gin.HandlerFunc {
 
 		record := &dao.BSBDD{
 			Content:     technologyData.Content,
+			Lang:        lang,
 		}
 		_, err := t.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -191,9 +197,10 @@ func (t *technology) TargetProteinUpdate() gin.HandlerFunc {
 		)
 
 		logger := t.Logger.Named("UpdateTargetProteinPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_target_protein;"
+		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -214,6 +221,7 @@ func (t *technology) TargetProteinUpdate() gin.HandlerFunc {
 
 		record := &dao.BTargetProtein{
 			Content:      technologyData.Content,
+			Lang:         lang,
 		}
 
 		_, err := t.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -249,9 +257,10 @@ func (t *technology) SBDDUpdate() gin.HandlerFunc {
 		)
 
 		logger := t.Logger.Named("UpdateSBDDPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_sbdd;"
+		sql := fmt.Sprintf("select * from b_sbdd where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -272,6 +281,7 @@ func (t *technology) SBDDUpdate() gin.HandlerFunc {
 
 		record := &dao.BSBDD{
 			Content:      technologyData.Content,
+			Lang:         lang,
 		}
 
 		_, err := t.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -308,9 +318,10 @@ func (t *technology) TargetProteinDelete() gin.HandlerFunc {
 			response           dao.TechnologyResponse
 		)
 		logger := t.Logger.Named("DeleteTargetProteinPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_target_protein;"
+		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -352,9 +363,10 @@ func (t *technology) SBDDDelete() gin.HandlerFunc {
 			response           dao.TechnologyResponse
 		)
 		logger := t.Logger.Named("DeleteSBDDPlatformInfo")
+		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := "select * from b_sbdd;"
+		sql := fmt.Sprintf("select * from b_sbdd where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{

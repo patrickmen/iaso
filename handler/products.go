@@ -41,10 +41,11 @@ func (pd *products) List() gin.HandlerFunc {
 		)
 
 		logger := pd.Logger.Named("GetProductInfo")
+		lang := c.Query("lang")
 		title := c.Param("title")
 
 		productDataList := make([]dao.ProductData, 0)
-		sql := "select * from b_products;"
+		sql := fmt.Sprintf("select * from b_products where lang='%s';", lang)
 		records, _ := pd.MysqlClient.Query(sql)
 		for _, record := range records {
 			productData = dao.ProductData{
@@ -76,9 +77,10 @@ func (pd *products) Create() gin.HandlerFunc {
 		)
 
 		logger := pd.Logger.Named("CreateProductInfo")
+		lang := c.Query("lang")
 
 		productDataList := make([]dao.ProductData, 0)
-		sql := "select * from b_products;"
+		sql := fmt.Sprintf("select * from b_products where lang='%s';", lang)
 		records, _ := pd.MysqlClient.Query(sql)
 		for _, record := range records {
 			productData = dao.ProductData{
@@ -100,7 +102,7 @@ func (pd *products) Create() gin.HandlerFunc {
 		}
 
 		record := &dao.BProducts{}
-		has, err := pd.MysqlClient.Where("title = ?", productData.Title).Get(record)
+		has, err := pd.MysqlClient.Where("title = ? and lang = ?", productData.Title, lang).Get(record)
 		if err != nil {
 			productDataList = reverseProduct(productDataList)
 			response.Data = productDataList
@@ -121,6 +123,7 @@ func (pd *products) Create() gin.HandlerFunc {
 			Cover:       productData.Cover,
 			Description: productData.Description,
 			Content:     productData.Content,
+			Lang:        lang,
 		}
 		_, err = pd.MysqlClient.InsertOne(record)
 		if err != nil {
@@ -147,9 +150,10 @@ func (pd *products) Update() gin.HandlerFunc {
 		)
 
 		logger := pd.Logger.Named("UpdateProductInfo")
+		lang := c.Query("lang")
 
 		productDataList := make([]dao.ProductData, 0)
-		sql := "select * from b_products;"
+		sql := fmt.Sprintf("select * from b_products where lang='%s';", lang)
 		records, _ := pd.MysqlClient.Query(sql)
 		for _, record := range records {
 			productData = dao.ProductData{
@@ -177,6 +181,7 @@ func (pd *products) Update() gin.HandlerFunc {
 			Cover:        productData.Cover,
 			Description:  productData.Description,
 			Content:      productData.Content,
+			Lang:         lang,
 		}
 
 		_, err := pd.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -216,9 +221,10 @@ func (pd *products) Delete() gin.HandlerFunc {
 			response           dao.ProductsResponse
 		)
 		logger := pd.Logger.Named("DeleteProductInfo")
+		lang := c.Query("lang")
 
 		productDataList := make([]dao.ProductData, 0)
-		sql := "select * from b_products;"
+		sql := fmt.Sprintf("select * from b_products where lang='%s';", lang)
 		records, _ := pd.MysqlClient.Query(sql)
 		for _, record := range records {
 			productData = dao.ProductData{

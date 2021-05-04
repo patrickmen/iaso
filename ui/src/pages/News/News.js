@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import moment from 'moment';
-import { formatMessage } from 'umi/locale';
+import { formatMessage, getLocale } from 'umi/locale';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Ellipsis from '@/components/Ellipsis';
 import { Card, List, Button, Icon, Input, Modal, Form, message } from 'antd';
@@ -76,6 +76,7 @@ const CreateForm = Form.create()(props => {
 class NewsList extends Component {
   state = {
     modalVisible: false,
+    currentLang: getLocale(),
   };
 
   componentDidMount() {
@@ -83,6 +84,7 @@ class NewsList extends Component {
     dispatch({
       type: 'news/fetch',
       payload: {
+        lang: this.state.currentLang,
       },
     });
   };
@@ -132,6 +134,7 @@ class NewsList extends Component {
         title: fields.title,
         description: fields.description,
         content: JSON.stringify(fields.content),
+        lang: this.state.currentLang,
       },
     });
     message.success(formatMessage({ id: 'app.add.success' }));
@@ -148,6 +151,7 @@ class NewsList extends Component {
         title: fields.title,
         description: fields.description,
         content: JSON.stringify(fields.content),
+        lang: this.state.currentLang,
       }
     });
     message.success(formatMessage({ id: 'app.update.success' }));
@@ -170,6 +174,7 @@ class NewsList extends Component {
       type: 'news/submit',
       payload: {
         id: id,
+        lang: this.state.currentLang,
       }
     });
     message.success(formatMessage({ id: 'app.add.success' }));
@@ -226,7 +231,7 @@ class NewsList extends Component {
         </div>
         <Card
           bordered={false}
-          bodyStyle={{ padding: '8px 8px 8px 42px' }}
+          bodyStyle={{ padding: '8px 8px 8px 68px', background: '#eff2f5' }}
         >
           <List
             size="large"

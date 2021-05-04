@@ -18,7 +18,7 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 1 ? removePartnering : updatePartnering;
+        callback = Object.keys(payload).length === 2 ? removePartnering : updatePartnering;
       } else {
         callback = addPartnering;
       }

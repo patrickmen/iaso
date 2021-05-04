@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginTop: 0,
+    paddingBottom: theme.spacing(4),
+    marginBottom: theme.spacing(2),
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',

@@ -17,6 +17,7 @@ type BAuthUsers struct {
 type BAboutUs struct {
 	Id                int64
 	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
@@ -24,6 +25,7 @@ type BAboutUs struct {
 type BTargetProtein struct {
 	Id                int64
 	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
@@ -31,23 +33,26 @@ type BTargetProtein struct {
 type BSBDD struct {
 	Id                int64
 	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
 type BProducts struct {
 	Id                int64
-	Title             string  `xorm:"title"`
+	Title             string    `xorm:"title"`
 	Cover             string  `xorm:"cover"`
-	Description       string  `xorm:"description"`
-	Content           string  `xorm:"content"`
+	Description       string    `xorm:"description"`
+	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
 type BPipeline struct {
 	Id                int64
-	Content           string  `xorm:"content"`
+	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
@@ -57,6 +62,7 @@ type BNews struct {
 	Title             string    `xorm:"title"`
 	Description       string    `xorm:"description"`
 	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
@@ -64,6 +70,7 @@ type BNews struct {
 type BPartnering struct {
 	Id                int64
 	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
@@ -71,6 +78,7 @@ type BPartnering struct {
 type BCareers struct {
 	Id                int64
 	Content           string    `xorm:"content"`
+	Lang              string    `xorm:"lang"`
 	CreatedAt         time.Time `xorm:"created_time"`
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }

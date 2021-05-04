@@ -8,6 +8,7 @@ import (
 
 
 type Config struct {
+	CrossConfig        CrossConfig  `json:"crossConfig" validate:"required"`
 	HTTPServer         HTTPServer   `json:"httpServer" validate:"required"`
 	Mysql              Mysql        `json:"mysql" validate:"required"`
 	Logger             Logger       `json:"logger" validate:"required"`
@@ -27,6 +28,14 @@ type Mysql struct {
 type Logger struct {
 	Dir        string `json:"dir" validate:"required"`
 	RemainDays int    `json:"remainDays" validate:"required"`
+}
+
+type CrossConfig struct {
+	AccessControlAllowOrigin      string   `json:"Access-Control-Allow-Origin" validate:"required"`
+	AccessControlAllowMethods     string   `json:"Access-Control-Allow-Methods" validate:"required"`
+	AccessControlAllowHeaders     string   `json:"Access-Control-Allow-Headers" validate:"required"`
+	AccessControlExposeHeaders    string   `json:"Access-Control-Expose-Headers" validate:"required"`
+	AccessControlAllowCredentials string   `json:"Access-Control-Allow-Credentials" validate:"required"`
 }
 
 // HTTPServer configuration for HttpServer

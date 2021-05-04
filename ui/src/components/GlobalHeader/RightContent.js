@@ -1,5 +1,5 @@
 import { PureComponent } from 'react';
-import { Button, Icon } from 'antd';
+import { Icon } from 'antd';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
 

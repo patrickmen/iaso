@@ -52,7 +52,7 @@ func main() {
 		return
 	}
 
-	router := server.Init(logger, verbose, cfg.HTTPServer.DistFilePath)
+	router := server.Init(logger, verbose, cfg.CrossConfig, cfg.HTTPServer.DistFilePath)
 	server.Run(router, cfg, logger)
 
 }

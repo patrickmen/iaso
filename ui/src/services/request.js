@@ -38,7 +38,6 @@ function checkSuccess(res) {
 
 export default {
   async get(url, params) {
-    console.log(url)
     return axios.get(
       url,
       params,

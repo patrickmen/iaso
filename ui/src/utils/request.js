@@ -3,7 +3,6 @@ import { notification } from 'antd';
 import Cookie from 'js-cookie'
 import router from 'umi/router';
 import hash from 'hash.js';
-import axios from 'axios'
 
 const xsrfHeaderName = 'Authorization'
 

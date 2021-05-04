@@ -9,17 +9,16 @@ An solution for website design.
 ## Menu
 
 ```
-- HOME
-- ABOUT US
-- PRODUCTS
-  - SUMMARY
-  - PRODUCTS
-  - SERVICES
-- PARTNERING
-- RESOURCES
-- NEWS
-- CAREERS
-- CONTACT US
+- Home
+- About US
+- Technology
+  - Target Protein Platform
+  - SBDD Platform
+- Pipeline
+- Partnering
+- News
+- Careers
+- Contact US
 ```
 
 ## Usage
@@ -30,27 +29,10 @@ An solution for website design.
 $ cd ui
 $ npm install @material-ui/core
 $ npm install
-$ npm start         # visit http://localhost:8000
+$ npm run start         # visit http://localhost:8000
 ```
 
 ### Use by docker
 
 ```bash
-# preview
-$ docker pull iaso-frontend
-$ docker run -p 8080:80 iaso-frontend
-# open http://localhost
-
-# dev
-$ npm run docker:dev
-
-# build
-$ npm run docker:build
-
-
-# production dev
-$ npm run docker-prod:dev
-
-# production build
-$ npm run docker-prod:build
 ```

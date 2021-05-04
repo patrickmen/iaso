@@ -86,6 +86,17 @@ const routes = [
             exact: true,
           },
           {
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../404'),
+                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../404').default,
+            exact: true,
+          },
+          {
             component: () =>
               React.createElement(
                 require('/Users/jenson/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')

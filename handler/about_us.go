@@ -41,9 +41,10 @@ func (a *aboutUs) List() gin.HandlerFunc {
 		)
 
 		logger := a.Logger.Named("GetAboutUsInfo")
+		lang := c.Query("lang")
 
 		aboutUsDataList := make([]dao.AboutUsData, 0)
-		sql := "select * from b_about_us;"
+		sql := fmt.Sprintf("select * from b_about_us where lang='%s';", lang)
 		records, _ := a.MysqlClient.Query(sql)
 		for _, record := range records {
 			aboutUsData = dao.AboutUsData{
@@ -68,9 +69,10 @@ func (a *aboutUs) Create() gin.HandlerFunc {
 		)
 
 		logger := a.Logger.Named("CreateAboutUsInfo")
+		lang := c.Query("lang")
 
 		aboutUsDataList := make([]dao.AboutUsData, 0)
-		sql := "select * from b_about_us;"
+		sql := fmt.Sprintf("select * from b_about_us where lang='%s';", lang)
 		records, _ := a.MysqlClient.Query(sql)
 		for _, record := range records {
 			aboutUsData = dao.AboutUsData{
@@ -82,13 +84,14 @@ func (a *aboutUs) Create() gin.HandlerFunc {
 
 		if err := c.ShouldBindBodyWith(&aboutUsData, binding.JSON); err != nil {
 			response.Data = aboutUsDataList
-			logger.Errorf("Faliled to bind request: %s", err.Error())
+			logger.Errorf("Failed to bind request: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}
 
 		record := &dao.BAboutUs{
-			Content:     aboutUsData.Content,
+			Content:   aboutUsData.Content,
+			Lang:      lang,
 		}
 		_, err := a.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -115,9 +118,10 @@ func (a *aboutUs) Update() gin.HandlerFunc {
 		)
 
 		logger := a.Logger.Named("UpdateAboutUsInfo")
+		lang := c.Query("lang")
 
 		aboutUsDataList := make([]dao.AboutUsData, 0)
-		sql := "select * from b_about_us;"
+		sql := fmt.Sprintf("select * from b_about_us where lang='%s';", lang)
 		records, _ := a.MysqlClient.Query(sql)
 		for _, record := range records {
 			aboutUsData = dao.AboutUsData{
@@ -137,7 +141,8 @@ func (a *aboutUs) Update() gin.HandlerFunc {
 		aboutUsId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
 		record := &dao.BAboutUs{
-			Content:      aboutUsData.Content,
+			Content:   aboutUsData.Content,
+			Lang:      lang,
 		}
 
 		_, err := a.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -173,9 +178,10 @@ func (a *aboutUs) Delete() gin.HandlerFunc {
 			response           dao.AboutUsResponse
 		)
 		logger := a.Logger.Named("DeleteAboutUsInfo")
+		lang := c.Query("lang")
 
 		aboutUsDataList := make([]dao.AboutUsData, 0)
-		sql := "select * from b_about_us;"
+		sql := fmt.Sprintf("select * from b_about_us where lang='%s';", lang)
 		records, _ := a.MysqlClient.Query(sql)
 		for _, record := range records {
 			aboutUsData = dao.AboutUsData{

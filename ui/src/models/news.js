@@ -18,7 +18,7 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 1 ? removeNews : updateNews;
+        callback = Object.keys(payload).length === 2 ? removeNews : updateNews;
       } else {
         callback = addNews;
       }

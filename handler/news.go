@@ -41,10 +41,11 @@ func (n *news) List() gin.HandlerFunc {
 		)
 
 		logger := n.Logger.Named("GetNewsInfo")
-		title := c.Param("title")
+		lang := c.Query("lang")
+		title := c.Query("title")
 
 		newsDataList := make([]dao.NewsData, 0)
-		sql := "select * from b_news;"
+		sql := fmt.Sprintf("select * from b_news where lang='%s';", lang)
 		records, _ := n.MysqlClient.Query(sql)
 		for _, record := range records {
 			newsData = dao.NewsData{
@@ -77,9 +78,10 @@ func (n *news) Create() gin.HandlerFunc {
 		)
 
 		logger := n.Logger.Named("CreateNewsInfo")
+		lang := c.Query("lang")
 
 		newsDataList := make([]dao.NewsData, 0)
-		sql := "select * from b_news;"
+		sql := fmt.Sprintf("select * from b_news where lang='%s';", lang)
 		records, _ := n.MysqlClient.Query(sql)
 		for _, record := range records {
 			newsData = dao.NewsData{
@@ -102,7 +104,7 @@ func (n *news) Create() gin.HandlerFunc {
 		}
 
 		record := &dao.BNews{}
-		has, err := n.MysqlClient.Where("title = ?", newsData.Title).Get(record)
+		has, err := n.MysqlClient.Where("title = ? and lang = ?", newsData.Title, lang).Get(record)
 		if err != nil {
 			newsDataList = reverseNews(newsDataList)
 			response.Data = newsDataList
@@ -122,6 +124,7 @@ func (n *news) Create() gin.HandlerFunc {
 			Title:       newsData.Title,
 			Description: newsData.Description,
 			Content:     newsData.Content,
+			Lang:        lang,
 		}
 		_, err = n.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -146,7 +149,6 @@ func (n *news) Create() gin.HandlerFunc {
 		newsDataList = append(newsDataList, newsData)
 		newsDataList = reverseNews(newsDataList)
 		response.Data = newsDataList
-		fmt.Println(record.CreatedAt)
 		logger.Debugf("Add a record named %s into database.", record.Title)
 		dao.Success(c, &response, http.StatusCreated)
 		return
@@ -161,9 +163,10 @@ func (n *news) Update() gin.HandlerFunc {
 		)
 
 		logger := n.Logger.Named("UpdateNewsInfo")
+		lang := c.Query("lang")
 
 		newsDataList := make([]dao.NewsData, 0)
-		sql := "select * from b_news;"
+		sql := fmt.Sprintf("select * from b_news where lang='%s';", lang)
 		records, _ := n.MysqlClient.Query(sql)
 		for _, record := range records {
 			newsData = dao.NewsData{
@@ -192,6 +195,7 @@ func (n *news) Update() gin.HandlerFunc {
 			Title:        newsData.Title,
 			Description:  newsData.Description,
 			Content:      newsData.Content,
+			Lang:         lang,
 		}
 
 		_, err := n.MysqlClient.Omit("created_time", "updated_time").Where("id = ?", newsId).Update(record)
@@ -230,9 +234,10 @@ func (n *news) Delete() gin.HandlerFunc {
 			response       dao.NewsResponse
 		)
 		logger := n.Logger.Named("DeleteNewsInfo")
+		lang := c.Query("lang")
 
 		newsDataList := make([]dao.NewsData, 0)
-		sql := "select * from b_news;"
+		sql := fmt.Sprintf("select * from b_news where lang='%s';", lang)
 		records, _ := n.MysqlClient.Query(sql)
 		for _, record := range records {
 			newsData = dao.NewsData{

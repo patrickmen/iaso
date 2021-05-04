@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Input, Modal, Form, Row, message, Col } from 'antd';
 import { connect } from 'dva';
-import { formatMessage } from 'umi/locale';
+import { formatMessage, getLocale } from 'umi/locale';
 import 'github-markdown-css';
 import ReactMarkdown from 'react-markdown';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -73,13 +73,16 @@ export default class AboutUs extends Component {
   // };
   state = {
     modalVisible: false,
+    currentLang: getLocale(),
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
       type: 'aboutus/fetch',
-      payload: {},
+      payload: {
+        lang: this.state.currentLang,
+      },
     });
   };
 
@@ -123,6 +126,7 @@ export default class AboutUs extends Component {
     dispatch({
       type: 'aboutus/submit',
       payload: {
+        lang: this.state.currentLang,
         content: JSON.stringify(fields.content),
       },
     });
@@ -137,6 +141,7 @@ export default class AboutUs extends Component {
       type: 'aboutus/submit',
       payload: {
         id: currentId,
+        lang: this.state.currentLang,
         content: JSON.stringify(fields.content),
       }
     });
@@ -160,9 +165,10 @@ export default class AboutUs extends Component {
       type: 'aboutus/submit',
       payload: {
         id: id,
+        lang: this.state.currentLang,
       }
     });
-    message.success(formatMessage({ id: 'app.update.success' }));
+    message.success(formatMessage({ id: 'app.delete.success' }));
     this.initModal();
   };
 

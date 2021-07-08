@@ -2,9 +2,7 @@ English | [简体中文](./README.zh-CN.md)
 
 <h1 align="center">IASO</h1>
 
-<div>
-A backend management system for website design. The frontend UI uses Ant Design Pro v2.0 as scaffolding and backend service is based on Gin Framework.
-</div>
+A backend management system for website design. The frontend UI uses [Ant Design Pro v2.2.0](https://github.com/ant-design/ant-design-pro/releases/tag/2.2.0) as scaffolding and backend service is based on [Gin Framework](https://github.com/gin-gonic/gin).
 
 ## Menu
 
@@ -25,7 +23,6 @@ A backend management system for website design. The frontend UI uses Ant Design 
 
 ## Prerequest
 1. [Install/Setup Golang development environment](https://golang.org/)
-2. Setup Go envs
 3. Install/Setup npm & nodejs
 4. cd ui & npm install @material-ui/core & npm install @material-ui/icons
 

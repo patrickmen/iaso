@@ -6,27 +6,36 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Ellipsis from '@/components/Ellipsis';
 import { Card, List, Button, Icon, Input, Modal, Form, message } from 'antd';
 import HeadFeaturedPost from '@/components/Article/HeadFeaturedPost';
+import CommonPictureLayout from '@/components/Form/CommonPictureLayout';
 import styles from './News.less';
 
 const { TextArea } = Input;
 
+const headFeaturedPost = {
+  title: 'MEET LOFLY BIO',
+  description:
+    "A Biopharmaceutical company, devoted to help the general public and investors better.",
+  image: 'https://cdn.pharmcafe.com/news-banner-01.jpg',
+  imgText: 'head image description',
+};
+
 const CreateForm = Form.create()(props => {
-  const { modalVisible, form, handleAdd, handleUpdate, handlePreview, current, initModal } = props;
+  const { modalVisible, pictureLayout, form, handleAdd, handleUpdate, handlePreview, current, initModal, handlePictureLayoutChange } = props;
   const okHandle = () => {
     form.validateFields((err, fieldsValue) => {
       if (err) return;
       form.resetFields();
       if (current.id !== null && current.id !== undefined) {
-        handleUpdate(fieldsValue);
+        handleUpdate(fieldsValue, pictureLayout);
       } else {
-        handleAdd(fieldsValue);
+        handleAdd(fieldsValue, pictureLayout);
       }
     });
   };
   const onPreview =() => {
     form.validateFields((err, fieldsValue) => {
       if(err) return;
-      handlePreview(fieldsValue);
+      handlePreview(fieldsValue, pictureLayout);
     });
   }
   return (
@@ -42,13 +51,13 @@ const CreateForm = Form.create()(props => {
       onOk={okHandle}
       onCancel={() => initModal()}
     >
-      <Form.Item labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} label={formatMessage({ id: 'app.form.title' })}>
+      <Form.Item labelCol={{ span: 2 }} wrapperCol={{ span: 21, offset: 1 }} label={formatMessage({ id: 'app.form.title' })}>
         {form.getFieldDecorator('title', {
           rules: [{ required: true, message: formatMessage({ id: 'app.characters.limit' }), min: 5 }],
           initialValue: current.title,
         })(<Input />)}
       </Form.Item>
-      <Form.Item labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} label={formatMessage({ id: 'app.form.description' })}>
+      <Form.Item labelCol={{ span: 2 }} wrapperCol={{ span: 21, offset: 1 }} label={formatMessage({ id: 'app.form.description' })}>
         {form.getFieldDecorator('description', {
           rules: [{ required: true, message: formatMessage({ id: 'app.characters.limit' }), min: 5 }],
           initialValue: current.description,
@@ -57,12 +66,7 @@ const CreateForm = Form.create()(props => {
           rows={3}
         />)}
       </Form.Item>
-      <Form.Item labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} label="markdown">
-        {form.getFieldDecorator('content', {
-          rules: [{ required: true, message: formatMessage({ id: 'app.characters.limit' }), min: 5 }],
-          initialValue: current.content,
-        })(<TextArea rows={10} />)}
-      </Form.Item>
+      <CommonPictureLayout pictureLayout={pictureLayout} form={form} current={current} onChange={handlePictureLayoutChange}/>
     </Modal>
   );
 });
@@ -76,6 +80,7 @@ const CreateForm = Form.create()(props => {
 class NewsList extends Component {
   state = {
     modalVisible: false,
+    pictureLayout: 'justify',
     currentLang: getLocale(),
   };
 
@@ -94,6 +99,7 @@ class NewsList extends Component {
       modalVisible: false,
       current: {},
       currentId: null,
+      pictureLayout: 'justify',
     });
   };
 
@@ -109,24 +115,29 @@ class NewsList extends Component {
       id: item.id,
       title: item.title,
       description: item.description,
-      content: JSON.parse(item.content)
+      content: JSON.parse(item.content),
+      image: item.image,
     }
     this.setState({
       modalVisible: true,
       currentId: item.id,
       current: currentValue,
+      pictureLayout: item.align,
     });
   };
 
-  handlePreview = fields => {
+  handlePreview = (fields, align) => {
       let data = {
+          headPost: headFeaturedPost,
           content: JSON.stringify(fields.content),
+          image: fields.image !== undefined ? fields.image : "",
+          align: align,
       }
       window["data"] = data;
       window.open(location.origin + `/#/preview/${fields.title}`)
   };
 
-  handleAdd = fields => {
+  handleAdd = (fields, align) => {
     const { dispatch } = this.props;
     dispatch({
       type: 'news/submit',
@@ -134,6 +145,8 @@ class NewsList extends Component {
         title: fields.title,
         description: fields.description,
         content: JSON.stringify(fields.content),
+        image: fields.image !== undefined ? JSON.stringify(fields.image) : "",
+        align: align,
         lang: this.state.currentLang,
       },
     });
@@ -141,7 +154,7 @@ class NewsList extends Component {
     this.initModal();
   };
 
-  handleUpdate = fields => {
+  handleUpdate = (fields, align) => {
     const { dispatch } = this.props;
     const { currentId } = this.state;
     dispatch({
@@ -151,6 +164,8 @@ class NewsList extends Component {
         title: fields.title,
         description: fields.description,
         content: JSON.stringify(fields.content),
+        image: fields.image,
+        align: align,
         lang: this.state.currentLang,
       }
     });
@@ -181,26 +196,33 @@ class NewsList extends Component {
     this.initModal();
   };
 
+  handlePictureLayoutChange = (e) => {
+    this.setState({
+      pictureLayout: e.target.value,
+    })
+  };
+
   render() {
     const {
       news: { news = [] },
       loading,
     } = this.props;
     
-    const { modalVisible, current = {}, currentId = null } = this.state;
+    const { modalVisible, pictureLayout, current = {}, currentId = null } = this.state;
 
     const parentMethods = {
       initModal: this.initModal,
       handleAdd: this.handleAdd,
       handleUpdate: this.handleUpdate,
       handlePreview: this.handlePreview,
+      handlePictureLayoutChange: this.handlePictureLayoutChange,
     };
 
     const headFeaturedPost = {
       title: 'Dynamic & News',
       description:
         "Welcome to browse and view.",
-      image: 'https://source.unsplash.com/random',
+      image: 'https://cdn.pharmcafe.com/news-banner-01.jpg',
       imgText: 'head image description',
     };
 
@@ -260,7 +282,7 @@ class NewsList extends Component {
           <Button type="primary" icon="plus" onClick={this.showModal}>{formatMessage({ id: 'app.button.add' })}</Button> 
         </Card>
                
-        <CreateForm {...parentMethods} modalVisible={modalVisible} current={current} />
+        <CreateForm {...parentMethods} modalVisible={modalVisible} pictureLayout={pictureLayout} current={current} />
       </Fragment>
     );
   }

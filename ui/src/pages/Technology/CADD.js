@@ -17,7 +17,7 @@ const headFeaturedPost = {
   title: 'MEET LOFLY BIO',
   description:
     "A Biopharmaceutical company, devoted to help the general public and investors better.",
-  image: 'https://cdn.pharmcafe.com/careers-banner-01.jpg',
+  image: 'https://cdn.pharmcafe.com/platform-banner-01.jpg',
   imgText: 'head image description',
 };
 
@@ -59,13 +59,13 @@ const CreateForm = Form.create()(props => {
   );
 });
 
-@connect(({ careers, loading }) => ({
-  careers,
-  loading: loading.models.careers,
+@connect(({ cadd, loading }) => ({
+  cadd,
+  loading: loading.models.cadd,
 }))
 
 @Form.create()
-export default class Careers extends Component {
+export default class CADD extends Component {
   // state = {
   //   markdown: [],
   // }
@@ -85,7 +85,7 @@ export default class Careers extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'careers/fetch',
+      type: 'cadd/fetch',
       payload: {
         lang: this.state.currentLang,
       },
@@ -136,7 +136,7 @@ export default class Careers extends Component {
   handleAdd = (fields, align) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'careers/submit',
+      type: 'cadd/submit',
       payload: {
         lang: this.state.currentLang,
         content: JSON.stringify(fields.content),
@@ -152,7 +152,7 @@ export default class Careers extends Component {
     const { dispatch } = this.props;
     const { currentId } = this.state;
     dispatch({
-      type: 'careers/submit',
+      type: 'cadd/submit',
       payload: {
         id: currentId,
         lang: this.state.currentLang,
@@ -178,7 +178,7 @@ export default class Careers extends Component {
   handleDelete = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'careers/submit',
+      type: 'cadd/submit',
       payload: {
         id: id,
         lang: this.state.currentLang,
@@ -196,7 +196,7 @@ export default class Careers extends Component {
 
   render() {
     const {
-      careers: { careers = [] },
+      cadd: { cadd = [] },
       loading,
     } = this.props;
 
@@ -217,9 +217,9 @@ export default class Careers extends Component {
         </div>
         <Container maxWidth="lg">
           <main>
-            { careers.length ? 
+            { cadd.length ? 
               <Grid container>
-                { careers.map((post) => (
+                { cadd.map((post) => (
                   <div key={JSON.parse(post.content).substring(0, 40)}>
                     <div>
                       {post.align == "right" ? <PictureAlignRight post={post} /> : post.align == "left" ? <PictureAlignLeft post={post} /> : <PictureAlignJustify post={post} />}

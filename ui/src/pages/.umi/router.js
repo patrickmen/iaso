@@ -60,8 +60,8 @@ const routes = [
         name: 'TECHNOLOGY',
         routes: [
           {
-            path: '/technology/target-protein-platform',
-            name: 'TARGET-PROTEIN-PLATFORM',
+            path: '/technology/gene-to-protein-platform',
+            name: 'GENE-TO-PROTEIN-PLATFORM',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
@@ -70,6 +70,19 @@ const routes = [
                     .default,
                 })
               : require('../Technology/TargetProtein').default,
+            exact: true,
+          },
+          {
+            path: '/technology/cadd-platform',
+            name: 'CADD-PLATFORM',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/CADD'),
+                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../Technology/CADD').default,
             exact: true,
           },
           {
@@ -83,6 +96,19 @@ const routes = [
                     .default,
                 })
               : require('../Technology/SBDD').default,
+            exact: true,
+          },
+          {
+            path: '/technology/del-platform',
+            name: 'DEL-PLATFORM',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/DEL'),
+                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../Technology/DEL').default,
             exact: true,
           },
           {

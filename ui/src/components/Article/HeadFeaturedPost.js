@@ -1,9 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Texty from 'rc-texty';
 
 const useStyles = makeStyles((theme) => ({
   headFeaturedPost: {
@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginTop: 0,
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(12),
     marginBottom: theme.spacing(2),
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    // backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -49,10 +49,10 @@ export default function HeadFeaturedPost(props) {
         <Grid item md={10}>
           <div className={classes.headFeaturedPostContent}>
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {post.title}
+            <Texty>{post.title}</Texty>
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
+              <Texty>{post.description}</Texty>
             </Typography>
           </div>
         </Grid>

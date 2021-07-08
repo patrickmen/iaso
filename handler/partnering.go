@@ -50,6 +50,8 @@ func (pt *partnering) List() gin.HandlerFunc {
 			partneringData = dao.PartneringData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			partneringDataList = append(partneringDataList, partneringData)
 		}
@@ -78,6 +80,8 @@ func (pt *partnering) Create() gin.HandlerFunc {
 			partneringData = dao.PartneringData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			partneringDataList = append(partneringDataList, partneringData)
 		}
@@ -91,6 +95,8 @@ func (pt *partnering) Create() gin.HandlerFunc {
 
 		record := &dao.BPartnering{
 			Content:     partneringData.Content,
+			Image:       partneringData.Image,
+			Align:       partneringData.Align,
 			Lang:        lang,
 		}
 		_, err := pt.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
@@ -126,6 +132,8 @@ func (pt *partnering) Update() gin.HandlerFunc {
 			partneringData = dao.PartneringData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			partneringDataList = append(partneringDataList, partneringData)
 		}
@@ -141,6 +149,8 @@ func (pt *partnering) Update() gin.HandlerFunc {
 
 		record := &dao.BPartnering{
 			Content:      partneringData.Content,
+			Image:        partneringData.Image,
+			Align:        partneringData.Align,
 			Lang:         lang,
 		}
 
@@ -158,6 +168,8 @@ func (pt *partnering) Update() gin.HandlerFunc {
 				partneringDataList[index] = dao.PartneringData{
 					Id:          data.Id,
 					Content:     record.Content,
+					Image:       record.Image,
+					Align:       record.Align,
 				}
 				break
 			}
@@ -186,6 +198,8 @@ func (pt *partnering) Delete() gin.HandlerFunc {
 			partneringData = dao.PartneringData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			partneringDataList = append(partneringDataList, partneringData)
 		}

@@ -1,6 +1,6 @@
 {
   "name": "iaso",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An UI for background management system.",
   "private": true,
   "scripts": {
@@ -35,6 +35,7 @@
     "prop-types": "^15.5.10",
     "qs": "^6.6.0",
     "rc-animate": "^2.4.4",
+    "rc-texty": "^0.2.0",
     "react": "^16.6.3",
     "react-container-query": "^0.11.0",
     "react-copy-to-clipboard": "^5.0.1",

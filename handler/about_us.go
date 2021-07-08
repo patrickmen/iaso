@@ -50,6 +50,8 @@ func (a *aboutUs) List() gin.HandlerFunc {
 			aboutUsData = dao.AboutUsData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			aboutUsDataList = append(aboutUsDataList, aboutUsData)
 		}
@@ -78,6 +80,8 @@ func (a *aboutUs) Create() gin.HandlerFunc {
 			aboutUsData = dao.AboutUsData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			aboutUsDataList = append(aboutUsDataList, aboutUsData)
 		}
@@ -91,6 +95,8 @@ func (a *aboutUs) Create() gin.HandlerFunc {
 
 		record := &dao.BAboutUs{
 			Content:   aboutUsData.Content,
+			Image:     aboutUsData.Image,
+			Align:     aboutUsData.Align,
 			Lang:      lang,
 		}
 		_, err := a.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
@@ -127,6 +133,8 @@ func (a *aboutUs) Update() gin.HandlerFunc {
 			aboutUsData = dao.AboutUsData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			aboutUsDataList = append(aboutUsDataList, aboutUsData)
 		}
@@ -142,6 +150,8 @@ func (a *aboutUs) Update() gin.HandlerFunc {
 
 		record := &dao.BAboutUs{
 			Content:   aboutUsData.Content,
+			Image:     aboutUsData.Image,
+			Align:     aboutUsData.Align,
 			Lang:      lang,
 		}
 
@@ -159,12 +169,14 @@ func (a *aboutUs) Update() gin.HandlerFunc {
 				aboutUsDataList[index] = dao.AboutUsData{
 					Id:          data.Id,
 					Content:     record.Content,
+					Image:       record.Image,
+					Align:       record.Align,
 				}
 				break
 			}
 		}
 		response.Data = aboutUsDataList
-		logger.Debugf("Update a record id: %s into database.", record.Id)
+		logger.Debugf(fmt.Sprintf("Update a record id: %d into database.", record.Id))
 		dao.Success(c, &response, http.StatusOK)
 		return
 	}
@@ -187,6 +199,8 @@ func (a *aboutUs) Delete() gin.HandlerFunc {
 			aboutUsData = dao.AboutUsData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			aboutUsDataList = append(aboutUsDataList, aboutUsData)
 		}

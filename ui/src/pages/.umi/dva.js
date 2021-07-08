@@ -21,7 +21,9 @@ export function _onCreate() {
   });
   
   app.model({ namespace: 'aboutus', ...(require('/Users/jenson/go/src/iaso/ui/src/models/aboutus.js').default) });
+app.model({ namespace: 'cadd', ...(require('/Users/jenson/go/src/iaso/ui/src/models/cadd.js').default) });
 app.model({ namespace: 'careers', ...(require('/Users/jenson/go/src/iaso/ui/src/models/careers.js').default) });
+app.model({ namespace: 'del', ...(require('/Users/jenson/go/src/iaso/ui/src/models/del.js').default) });
 app.model({ namespace: 'global', ...(require('/Users/jenson/go/src/iaso/ui/src/models/global.js').default) });
 app.model({ namespace: 'menu', ...(require('/Users/jenson/go/src/iaso/ui/src/models/menu.js').default) });
 app.model({ namespace: 'news', ...(require('/Users/jenson/go/src/iaso/ui/src/models/news.js').default) });

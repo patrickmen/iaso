@@ -20,14 +20,24 @@ export default [
         name: 'TECHNOLOGY',
         routes: [
           {
-            path: '/technology/target-protein-platform',
-            name: 'TARGET-PROTEIN-PLATFORM',
+            path: '/technology/gene-to-protein-platform',
+            name: 'GENE-TO-PROTEIN-PLATFORM',
             component: './Technology/TargetProtein',
+          },
+          {
+            path: '/technology/cadd-platform',
+            name: 'CADD-PLATFORM',
+            component: './Technology/CADD',
           },
           {
             path: '/technology/sbdd-platform',
             name: 'SBDD-PLATFORM',
             component: './Technology/SBDD',
+          },
+          {
+            path: '/technology/del-platform',
+            name: 'DEL-PLATFORM',
+            component: './Technology/DEL',
           },
           {
             component: '404',

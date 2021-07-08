@@ -88,6 +88,8 @@ type UserData struct {
 type AboutUsData struct {
 	Id                string   `json:"id"`
 	Content           string   `json:"content"`
+	Image             string   `json:"image"`
+	Align             string   `json:"align"`
 	CreatedAt         string   `json:"createdAt"`
 	UpdatedAt         string   `json:"updatedAt"`
 }
@@ -95,6 +97,8 @@ type AboutUsData struct {
 type TechnologyData struct {
 	Id                string   `json:"id"`
 	Content           string   `json:"content"`
+	Image             string   `json:"image"`
+	Align             string   `json:"align"`
 	CreatedAt         string   `json:"createdAt"`
 	UpdatedAt         string   `json:"updatedAt"`
 }
@@ -102,6 +106,8 @@ type TechnologyData struct {
 type PartneringData struct{
 	Id                string   `json:"id"`
 	Content           string   `json:"content"`
+	Image             string   `json:"image"`
+	Align             string   `json:"align"`
 	CreatedAt         string   `json:"createdAt"`
 	UpdatedAt         string   `json:"updatedAt"`
 }
@@ -109,6 +115,8 @@ type PartneringData struct{
 type PipelineData struct {
 	Id                string  `json:"id"`
 	Content           string  `json:"content"`
+	Image             string   `json:"image"`
+	Align             string   `json:"align"`
 	CreatedAt         string  `json:"createdAt"`
 	UpdatedAt         string  `json:"updatedAt"`
 }
@@ -118,6 +126,8 @@ type NewsData struct {
 	Title             string  `json:"title"`
 	Description       string  `json:"description"`
 	Content           string  `json:"content"`
+	Image             string   `json:"image"`
+	Align             string   `json:"align"`
 	CreatedAt         string  `json:"createdAt"`
 	UpdatedAt         string  `json:"updatedAt"`
 }
@@ -135,6 +145,8 @@ type ProductData struct {
 type CareerData struct{
 	Id                string  `json:"id"`
 	Content           string  `json:"content"`
+	Image             string   `json:"image"`
+	Align             string   `json:"align"`
 	CreatedAt         string  `json:"createdAt"`
 	UpdatedAt         string  `json:"updatedAt"`
 }

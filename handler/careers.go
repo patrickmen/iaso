@@ -50,6 +50,8 @@ func (cr *careers) List() gin.HandlerFunc {
 			careerData = dao.CareerData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			careerDataList = append(careerDataList, careerData)
 		}
@@ -78,6 +80,8 @@ func (cr *careers) Create() gin.HandlerFunc {
 			careerData = dao.CareerData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			careerDataList = append(careerDataList, careerData)
 		}
@@ -90,8 +94,10 @@ func (cr *careers) Create() gin.HandlerFunc {
 		}
 
 		record := &dao.BCareers{
-			Content:     careerData.Content,
-			Lang:        lang,
+			Content:   careerData.Content,
+			Image:     careerData.Image,
+			Align:     careerData.Align,
+			Lang:      lang,
 		}
 		_, err := cr.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
@@ -126,6 +132,8 @@ func (cr *careers) Update() gin.HandlerFunc {
 			careerData = dao.CareerData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			careerDataList = append(careerDataList, careerData)
 		}
@@ -140,8 +148,10 @@ func (cr *careers) Update() gin.HandlerFunc {
 		careerId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
 		record := &dao.BCareers{
-			Content:      careerData.Content,
-			Lang:        lang,
+			Content:   careerData.Content,
+			Image:     careerData.Image,
+			Align:     careerData.Align,
+			Lang:      lang,
 		}
 
 		_, err := cr.MysqlClient.Omit("created_time", "updated_time").Where(
@@ -158,12 +168,14 @@ func (cr *careers) Update() gin.HandlerFunc {
 				careerDataList[index] = dao.CareerData{
 					Id:          data.Id,
 					Content:     record.Content,
+					Image:       record.Image,
+					Align:       record.Align,
 				}
 				break
 			}
 		}
 		response.Data = careerDataList
-		logger.Debugf("Update a record named %s into database.", record.Id)
+		logger.Debugf(fmt.Sprintf("Update a record named %d into database.", record.Id))
 		dao.Success(c, &response, http.StatusOK)
 		return
 	}
@@ -186,6 +198,8 @@ func (cr *careers) Delete() gin.HandlerFunc {
 			careerData = dao.CareerData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			careerDataList = append(careerDataList, careerData)
 		}

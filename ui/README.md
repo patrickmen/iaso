@@ -12,8 +12,10 @@ An solution for website design.
 - Home
 - About US
 - Technology
-  - Target Protein Platform
+  - Gene To Protein Platform
+  - CADD Platform
   - SBDD Platform
+  - DEL Platform
 - Pipeline
 - Partnering
 - News
@@ -28,11 +30,13 @@ An solution for website design.
 ```bash
 $ cd ui
 $ npm install @material-ui/core
+$ npm install @material-ui/icons
 $ npm install
 $ npm run start         # visit http://localhost:8000
 ```
 
-### Use by docker
+### build
 
 ```bash
+$ npm run build
 ```

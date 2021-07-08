@@ -53,6 +53,8 @@ func (n *news) List() gin.HandlerFunc {
 				Title:       string(record["title"]),
 				Description: string(record["description"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 				CreatedAt:   string(record["created_time"]),
 				UpdatedAt:   string(record["updated_time"]),
 			}
@@ -89,6 +91,8 @@ func (n *news) Create() gin.HandlerFunc {
 				Title:       string(record["title"]),
 				Description: string(record["description"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 				CreatedAt:   string(record["created_time"]),
 				UpdatedAt:   string(record["updated_time"]),
 			}
@@ -124,6 +128,8 @@ func (n *news) Create() gin.HandlerFunc {
 			Title:       newsData.Title,
 			Description: newsData.Description,
 			Content:     newsData.Content,
+			Image:       newsData.Image,
+			Align:       newsData.Align,
 			Lang:        lang,
 		}
 		_, err = n.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
@@ -174,6 +180,8 @@ func (n *news) Update() gin.HandlerFunc {
 				Title:       string(record["title"]),
 				Description: string(record["description"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 				CreatedAt:   string(record["created_time"]),
 				UpdatedAt:   string(record["updated_time"]),
 			}
@@ -195,6 +203,8 @@ func (n *news) Update() gin.HandlerFunc {
 			Title:        newsData.Title,
 			Description:  newsData.Description,
 			Content:      newsData.Content,
+			Image:        newsData.Image,
+			Align:        newsData.Align,
 			Lang:         lang,
 		}
 
@@ -213,6 +223,8 @@ func (n *news) Update() gin.HandlerFunc {
 					Title:       record.Title,
 					Description: record.Description,
 					Content:     record.Content,
+					Image:       record.Image,
+					Align:       record.Align,
 					CreatedAt:   record.CreatedAt.Format("2006-01-02 15:04:05"),
 					UpdatedAt:   record.UpdatedAt.Format("2006-01-02 15:04:05"),
 				}
@@ -245,6 +257,8 @@ func (n *news) Delete() gin.HandlerFunc {
 				Title:       string(record["title"]),
 				Description: string(record["description"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 				CreatedAt:   string(record["created_time"]),
 				UpdatedAt:   string(record["updated_time"]),
 			}

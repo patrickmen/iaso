@@ -12,8 +12,10 @@
 - 首页
 - 关于我们
 - 技术平台
-  - 靶点蛋白研究平台
+  - Gene To Protein研究平台
+  - CADD平台
   - SBDD平台
+  - 高通量筛选平台
 - 研发管线
 - 合作伙伴
 - 新闻资讯
@@ -27,11 +29,13 @@
 ```bash
 $ cd ui
 $ npm install @material-ui/core
+$ npm install @material-ui/icons
 $ npm install
 $ npm run start         # 访问 http://localhost:8000
 ```
 
-### 使用 docker
+### 编译
 
 ```bash
+$ npm run build
 ```

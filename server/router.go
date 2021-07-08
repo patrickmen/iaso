@@ -1,7 +1,6 @@
 package server
 
 import (
-	"iaso/config"
 	"net/http"
 	"os"
 	"os/signal"
@@ -11,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
+	"iaso/config"
 	"iaso/handler"
 	log "iaso/logger"
 )
@@ -120,13 +120,21 @@ func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfi
 	technology := handler.NewTechnology(logger)
 	{
 		technologyV1Group.GET("/target-protein", technology.TargetProteinList())
+		technologyV1Group.GET("/cadd", technology.CADDList())
 		technologyV1Group.GET("/sbdd", technology.SBDDList())
+		technologyV1Group.GET("/del", technology.DELList())
 		technologyV1Group.POST("/target-protein", technology.TargetProteinCreate())
+		technologyV1Group.POST("/cadd", technology.CADDCreate())
 		technologyV1Group.POST("/sbdd", technology.SBDDCreate())
+		technologyV1Group.POST("/del", technology.DELCreate())
 		technologyV1Group.PUT("/target-protein/:id", technology.TargetProteinUpdate())
+		technologyV1Group.PUT("/cadd/:id", technology.CADDUpdate())
 		technologyV1Group.PUT("/sbdd/:id", technology.SBDDUpdate())
+		technologyV1Group.PUT("/del/:id", technology.DELUpdate())
 		technologyV1Group.DELETE("/target-protein/:id", technology.TargetProteinDelete())
+		technologyV1Group.DELETE("/cadd/:id", technology.CADDDelete())
 		technologyV1Group.DELETE("/sbdd/:id", technology.SBDDDelete())
+		technologyV1Group.DELETE("/del/:id", technology.DELDelete())
 	}
 
 	////products handler

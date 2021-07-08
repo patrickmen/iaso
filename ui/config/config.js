@@ -74,11 +74,11 @@ export default {
     '@antv/data-set': 'DataSet',
   },
   proxy: {
-    '/api': {
-      target: 'http://localhost:8081',
-      changeOrigin: true,
-      pathRewrite: { '^/api': '/api' },
-    },
+    // '/api': {
+    //   target: 'http://localhost:8081',
+    //   changeOrigin: true,
+    //   pathRewrite: { '^/api': '/api' },
+    // },
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {

@@ -26,7 +26,7 @@ type pipeline struct {
 	MysqlClient       xorm.Interface
 }
 
-func NewPipeline(logger *zap.SugaredLogger) AboutUs {
+func NewPipeline(logger *zap.SugaredLogger) Pipeline {
 	return &pipeline{
 		Logger:       logger.Named("pipeline"),
 		MysqlClient:  mysql.Client,
@@ -50,6 +50,8 @@ func (p *pipeline) List() gin.HandlerFunc {
 			pipelineData = dao.PipelineData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			pipelineDataList = append(pipelineDataList, pipelineData)
 		}
@@ -78,19 +80,23 @@ func (p *pipeline) Create() gin.HandlerFunc {
 			pipelineData = dao.PipelineData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			pipelineDataList = append(pipelineDataList, pipelineData)
 		}
 
 		if err := c.ShouldBindBodyWith(&pipelineData, binding.JSON); err != nil {
 			response.Data = pipelineDataList
-			logger.Errorf("Faliled to bind request: %s", err.Error())
+			logger.Errorf("Failed to bind request: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}
 
 		record := &dao.BAboutUs{
 			Content:     pipelineData.Content,
+			Image:       pipelineData.Image,
+			Align:       pipelineData.Align,
 			Lang:        lang,
 		}
 		_, err := p.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
@@ -127,6 +133,8 @@ func (p *pipeline) Update() gin.HandlerFunc {
 			pipelineData = dao.PipelineData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			pipelineDataList = append(pipelineDataList, pipelineData)
 		}
@@ -142,6 +150,8 @@ func (p *pipeline) Update() gin.HandlerFunc {
 
 		record := &dao.BPipeline{
 			Content:      pipelineData.Content,
+			Image:        pipelineData.Image,
+			Align:        pipelineData.Align,
 			Lang:         lang,
 		}
 
@@ -159,6 +169,8 @@ func (p *pipeline) Update() gin.HandlerFunc {
 				pipelineDataList[index] = dao.PipelineData{
 					Id:          data.Id,
 					Content:     record.Content,
+					Image:       record.Image,
+					Align:       record.Align,
 				}
 				break
 			}
@@ -187,6 +199,8 @@ func (p *pipeline) Delete() gin.HandlerFunc {
 			pipelineData = dao.PipelineData{
 				Id:          string(record["id"]),
 				Content:     string(record["content"]),
+				Image:       string(record["image"]),
+				Align:       string(record["align"]),
 			}
 			pipelineDataList = append(pipelineDataList, pipelineData)
 		}

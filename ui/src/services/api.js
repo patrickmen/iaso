@@ -69,6 +69,40 @@ export async function removeTargetProtein(params) {
   });
 }
 
+// CADD API
+export async function queryCADDList(params) {
+  return request(`/api/v1/technology/cadd?${stringify(params)}`);
+}
+
+export async function addCADD(params) {
+  return request(`/api/v1/technology/cadd?lang=${params.lang}`, {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
+
+export async function updateCADD(params) {
+  return request(`/api/v1/technology/cadd/${params.id}?lang=${params.lang}`, {
+    method: 'PUT',
+    body: {
+      ...params,
+      method: 'update',
+    },
+  });
+}
+
+export async function removeCADD(params) {
+  return request(`/api/v1/technology/cadd/${params.id}?lang=${params.lang}`, {
+    method: 'DELETE',
+    body: {
+      method: 'delete',
+    },
+  });
+}
+
 // SBDD API
 export async function querySBDDList(params) {
   return request(`/api/v1/technology/sbdd?${stringify(params)}`);
@@ -96,6 +130,40 @@ export async function updateSBDD(params) {
 
 export async function removeSBDD(params) {
   return request(`/api/v1/technology/sbdd/${params.id}?lang=${params.lang}`, {
+    method: 'DELETE',
+    body: {
+      method: 'delete',
+    },
+  });
+}
+
+// DEL API
+export async function queryDELList(params) {
+  return request(`/api/v1/technology/del?${stringify(params)}`);
+}
+
+export async function addDEL(params) {
+  return request(`/api/v1/technology/del?lang=${params.lang}`, {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
+
+export async function updateDEL(params) {
+  return request(`/api/v1/technology/del/${params.id}?lang=${params.lang}`, {
+    method: 'PUT',
+    body: {
+      ...params,
+      method: 'update',
+    },
+  });
+}
+
+export async function removeDEL(params) {
+  return request(`/api/v1/technology/del/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',

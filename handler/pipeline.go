@@ -93,7 +93,7 @@ func (p *pipeline) Create() gin.HandlerFunc {
 			return
 		}
 
-		record := &dao.BAboutUs{
+		record := &dao.BPipeline{
 			Content:     pipelineData.Content,
 			Image:       pipelineData.Image,
 			Align:       pipelineData.Align,
@@ -119,7 +119,7 @@ func (p *pipeline) Create() gin.HandlerFunc {
 func (p *pipeline) Update() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
-			pipelineData     dao.PipelineData
+			pipelineData    dao.PipelineData
 			response        dao.PipelineResponse
 		)
 

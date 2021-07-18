@@ -24,7 +24,7 @@ A backend management system for website design. The frontend UI uses [Ant Design
 ## Prerequest
 1. [Install/Setup Golang development environment](https://golang.org/)
 3. Install/Setup npm & nodejs
-4. cd ui & npm install @material-ui/core & npm install @material-ui/icons
+4. cd ui & npm install @material-ui/core & npm install @material-ui/icons & npm install --save rc-texty
 
 ## Contributing
 #### backend

@@ -24,7 +24,7 @@
 ## 前提条件
 1. [安装和配置golang开发环境](https://golang.org/)
 3. 安装 npm & nodejs
-4. cd ui & npm install @material-ui/core & npm install @material-ui/icons
+4. cd ui & npm install @material-ui/core & npm install @material-ui/icons & npm install --save rc-texty
 
 ## 贡献
 #### 后端

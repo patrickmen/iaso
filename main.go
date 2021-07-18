@@ -29,8 +29,7 @@ func main() {
 		logger = log.RuntimeSugar
 	}
 	//Get the config
-	configFile := "config/config.json"
-	if err := config.Init(configFile, logger); err != nil {
+	if err := config.Init(logger); err != nil {
 		logger.Fatalf("config init failed: %v", err)
 	}
 	defer config.Finish()

@@ -218,14 +218,6 @@ class NewsList extends Component {
       handlePictureLayoutChange: this.handlePictureLayoutChange,
     };
 
-    const headFeaturedPost = {
-      title: 'Dynamic & News',
-      description:
-        "Welcome to browse and view.",
-      image: 'https://cdn.pharmcafe.com/news-banner-01.jpg',
-      imgText: 'head image description',
-    };
-
     const ArticleListContent = ({ data: { description, title, createdAt, updatedAt} }) => (
       <div className={styles.listContent}>
         <div className={styles.title}>

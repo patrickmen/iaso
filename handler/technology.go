@@ -190,7 +190,7 @@ func (t *technology) TargetProteinCreate() gin.HandlerFunc {
 
 		if err := c.ShouldBindBodyWith(&technologyData, binding.JSON); err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Faliled to bind request: %s", err.Error())
+			logger.Errorf("Failed to bind request: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}

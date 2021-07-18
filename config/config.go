@@ -49,8 +49,9 @@ type HTTPServer struct {
 }
 
 
-func Init(configfile string, logger stdlogger.LeveledLogger) (err error) {
-	cfg.MustRegisterFile(&Config{}, configfile, cfg.WithDefaultConfiguration().WithLogger(logger))
+func Init(logger stdlogger.LeveledLogger) (err error) {
+	configFile := "config/config.json"
+	cfg.MustRegisterFile(&Config{}, configFile, cfg.WithDefaultConfiguration().WithLogger(logger))
 	if err = cfg.WaitSyncedAll(); err != nil {
 		logger.Errorf("Fail to synced all")
 		return

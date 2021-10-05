@@ -1,10 +1,9 @@
 {
   "name": "iaso",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "An UI for background management system.",
   "private": true,
   "scripts": {
-    "presite": "cd functions && npm install",
     "start": "cross-env APP_TYPE=site umi dev",
     "start:no-mock": "cross-env MOCK=none umi dev",
     "build": "umi build"
@@ -12,7 +11,7 @@
   "dependencies": {
     "@antv/data-set": "^0.10.0",
     "@babel/runtime": "^7.2.0",
-    "@material-ui/core": "^4.11.3",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "antd": "^3.11.6",
     "bizcharts": "^3.4.2",

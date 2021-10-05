@@ -20,19 +20,19 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'aboutus', ...(require('/Users/jenson/go/src/iaso/ui/src/models/aboutus.js').default) });
-app.model({ namespace: 'cadd', ...(require('/Users/jenson/go/src/iaso/ui/src/models/cadd.js').default) });
-app.model({ namespace: 'careers', ...(require('/Users/jenson/go/src/iaso/ui/src/models/careers.js').default) });
-app.model({ namespace: 'del', ...(require('/Users/jenson/go/src/iaso/ui/src/models/del.js').default) });
-app.model({ namespace: 'global', ...(require('/Users/jenson/go/src/iaso/ui/src/models/global.js').default) });
-app.model({ namespace: 'menu', ...(require('/Users/jenson/go/src/iaso/ui/src/models/menu.js').default) });
-app.model({ namespace: 'news', ...(require('/Users/jenson/go/src/iaso/ui/src/models/news.js').default) });
-app.model({ namespace: 'partnering', ...(require('/Users/jenson/go/src/iaso/ui/src/models/partnering.js').default) });
-app.model({ namespace: 'pipeline', ...(require('/Users/jenson/go/src/iaso/ui/src/models/pipeline.js').default) });
-app.model({ namespace: 'products', ...(require('/Users/jenson/go/src/iaso/ui/src/models/products.js').default) });
-app.model({ namespace: 'sbdd', ...(require('/Users/jenson/go/src/iaso/ui/src/models/sbdd.js').default) });
-app.model({ namespace: 'setting', ...(require('/Users/jenson/go/src/iaso/ui/src/models/setting.js').default) });
-app.model({ namespace: 'targetProtein', ...(require('/Users/jenson/go/src/iaso/ui/src/models/targetProtein.js').default) });
+  app.model({ namespace: 'aboutus', ...(require('/Users/patrick/go/src/iaso/ui/src/models/aboutus.js').default) });
+app.model({ namespace: 'academicInstitution', ...(require('/Users/patrick/go/src/iaso/ui/src/models/academicInstitution.js').default) });
+app.model({ namespace: 'biomarker', ...(require('/Users/patrick/go/src/iaso/ui/src/models/biomarker.js').default) });
+app.model({ namespace: 'biotechCompany', ...(require('/Users/patrick/go/src/iaso/ui/src/models/biotechCompany.js').default) });
+app.model({ namespace: 'careers', ...(require('/Users/patrick/go/src/iaso/ui/src/models/careers.js').default) });
+app.model({ namespace: 'global', ...(require('/Users/patrick/go/src/iaso/ui/src/models/global.js').default) });
+app.model({ namespace: 'menu', ...(require('/Users/patrick/go/src/iaso/ui/src/models/menu.js').default) });
+app.model({ namespace: 'news', ...(require('/Users/patrick/go/src/iaso/ui/src/models/news.js').default) });
+app.model({ namespace: 'pipeline', ...(require('/Users/patrick/go/src/iaso/ui/src/models/pipeline.js').default) });
+app.model({ namespace: 'products', ...(require('/Users/patrick/go/src/iaso/ui/src/models/products.js').default) });
+app.model({ namespace: 'sbdd', ...(require('/Users/patrick/go/src/iaso/ui/src/models/sbdd.js').default) });
+app.model({ namespace: 'setting', ...(require('/Users/patrick/go/src/iaso/ui/src/models/setting.js').default) });
+app.model({ namespace: 'targetValidation', ...(require('/Users/patrick/go/src/iaso/ui/src/models/targetValidation.js').default) });
   return app;
 }
 

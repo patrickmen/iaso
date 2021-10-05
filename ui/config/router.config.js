@@ -20,14 +20,9 @@ export default [
         name: 'TECHNOLOGY',
         routes: [
           {
-            path: '/technology/gene-to-protein-platform',
-            name: 'GENE-TO-PROTEIN-PLATFORM',
-            component: './Technology/TargetProtein',
-          },
-          {
-            path: '/technology/cadd-platform',
-            name: 'CADD-PLATFORM',
-            component: './Technology/CADD',
+            path: '/technology/target-validation-platform',
+            name: 'TARGET-VALIDATION-PLATFORM',
+            component: './Technology/TargetValidation',
           },
           {
             path: '/technology/sbdd-platform',
@@ -35,9 +30,9 @@ export default [
             component: './Technology/SBDD',
           },
           {
-            path: '/technology/del-platform',
-            name: 'DEL-PLATFORM',
-            component: './Technology/DEL',
+            path: '/technology/biomarker-development-platform',
+            name: 'BIOMARKER-DEVELOPMENT-PLATFORM',
+            component: './Technology/Biomarker',
           },
           {
             component: '404',
@@ -73,7 +68,21 @@ export default [
       {
         path: '/partnering',
         name: 'PARTNERING',
-        component: './Partnering/Partnering',
+        routes: [
+          {
+            path: '/partnering/academic-institution',
+            name: 'ACADEMIC-INSTITUTION',
+            component: './Partnering/AcademicInstitution',
+          },
+          {
+            path: '/partnering/biotech-company',
+            name: 'BIOTECH-COMPANY',
+            component: './Partnering/BiotechCompany',
+          },
+          {
+            component: '404',
+          },
+        ],
       },
       {
         path: '/news',

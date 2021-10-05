@@ -14,9 +14,9 @@ import Exception404 from '@/pages/ExceptionBeta/E404';
 
 
 const headFeaturedPost = {
-  title: 'MEET LOFLY BIO',
+  title: "",
   description:
-    "A Biopharmaceutical company, devoted to help the general public and investors better.",
+    "",
   image: 'https://cdn.pharmcafe.com/platform-banner-01.jpg',
   imgText: 'head image description',
 };
@@ -59,13 +59,13 @@ const CreateForm = Form.create()(props => {
   );
 });
 
-@connect(({ del, loading }) => ({
-  del,
-  loading: loading.models.del,
+@connect(({ targetValidation, loading }) => ({
+  targetValidation,
+  loading: loading.models.targetValidation,
 }))
 
 @Form.create()
-export default class DEL extends Component {
+export default class TargetValidation extends Component {
   // state = {
   //   markdown: [],
   // }
@@ -85,7 +85,7 @@ export default class DEL extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'del/fetch',
+      type: 'targetValidation/fetch',
       payload: {
         lang: this.state.currentLang,
       },
@@ -136,7 +136,7 @@ export default class DEL extends Component {
   handleAdd = (fields, align) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'del/submit',
+      type: 'targetValidation/submit',
       payload: {
         lang: this.state.currentLang,
         content: JSON.stringify(fields.content),
@@ -152,7 +152,7 @@ export default class DEL extends Component {
     const { dispatch } = this.props;
     const { currentId } = this.state;
     dispatch({
-      type: 'del/submit',
+      type: 'targetValidation/submit',
       payload: {
         id: currentId,
         lang: this.state.currentLang,
@@ -178,7 +178,7 @@ export default class DEL extends Component {
   handleDelete = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'del/submit',
+      type: 'targetValidation/submit',
       payload: {
         id: id,
         lang: this.state.currentLang,
@@ -196,7 +196,7 @@ export default class DEL extends Component {
 
   render() {
     const {
-      del: { del = [] },
+      targetValidation: { targetValidation = [] },
       loading,
     } = this.props;
 
@@ -217,9 +217,9 @@ export default class DEL extends Component {
         </div>
         <Container maxWidth="lg">
           <main>
-            { del.length ? 
+            { targetValidation.length ? 
               <Grid container>
-                { del.map((post) => (
+                { targetValidation.map((post) => (
                   <div key={JSON.parse(post.content).substring(0, 40)}>
                     <div>
                       {post.align == "right" ? <PictureAlignRight post={post} /> : post.align == "left" ? <PictureAlignLeft post={post} /> : <PictureAlignJustify post={post} />}

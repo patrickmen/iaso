@@ -1,15 +1,15 @@
-import { queryPartneringList, addPartnering, removePartnering, updatePartnering } from '@/services/api';
+import { queryBiotechCompanyList, addBiotechCompany, removeBiotechCompany, updateBiotechCompany } from '@/services/api';
 
 export default {
-  namespace: 'partnering',
+  namespace: 'biotechCompany',
 
   state: {
-    partnering: [],
+    biotechCompany: [],
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryPartneringList, payload);
+      const response = yield call(queryBiotechCompanyList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response.data) ? response.data : [],
@@ -18,9 +18,9 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 2 ? removePartnering : updatePartnering;
+        callback = Object.keys(payload).length === 2 ? removeBiotechCompany : updateBiotechCompany;
       } else {
-        callback = addPartnering;
+        callback = addBiotechCompany;
       }
       const response = yield call(callback, payload); // post
       yield put({
@@ -34,7 +34,7 @@ export default {
     queryList(state, action) {
       return {
         ...state,
-        partnering: action.payload,
+        biotechCompany: action.payload,
       };
     },
   },

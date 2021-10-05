@@ -14,10 +14,10 @@ import Exception404 from '@/pages/ExceptionBeta/E404';
 
 
 const headFeaturedPost = {
-  title: 'MEET LOFLY BIO',
+  title: "",
   description:
-    "A Biopharmaceutical company, devoted to help the general public and investors better.",
-  image: 'https://cdn.pharmcafe.com/platform-banner-01.jpg',
+    "",
+  image: 'https://cdn.pharmcafe.com/partnering-banner-01.jpg',
   imgText: 'head image description',
 };
 
@@ -59,13 +59,13 @@ const CreateForm = Form.create()(props => {
   );
 });
 
-@connect(({ cadd, loading }) => ({
-  cadd,
-  loading: loading.models.cadd,
+@connect(({ academicInstitution, loading }) => ({
+  academicInstitution,
+  loading: loading.models.academicInstitution,
 }))
 
 @Form.create()
-export default class CADD extends Component {
+export default class AcademicInstitution extends Component {
   // state = {
   //   markdown: [],
   // }
@@ -85,7 +85,7 @@ export default class CADD extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'cadd/fetch',
+      type: 'academicInstitution/fetch',
       payload: {
         lang: this.state.currentLang,
       },
@@ -136,7 +136,7 @@ export default class CADD extends Component {
   handleAdd = (fields, align) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'cadd/submit',
+      type: 'academicInstitution/submit',
       payload: {
         lang: this.state.currentLang,
         content: JSON.stringify(fields.content),
@@ -152,7 +152,7 @@ export default class CADD extends Component {
     const { dispatch } = this.props;
     const { currentId } = this.state;
     dispatch({
-      type: 'cadd/submit',
+      type: 'academicInstitution/submit',
       payload: {
         id: currentId,
         lang: this.state.currentLang,
@@ -178,7 +178,7 @@ export default class CADD extends Component {
   handleDelete = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'cadd/submit',
+      type: 'academicInstitution/submit',
       payload: {
         id: id,
         lang: this.state.currentLang,
@@ -196,7 +196,7 @@ export default class CADD extends Component {
 
   render() {
     const {
-      cadd: { cadd = [] },
+      academicInstitution: { academicInstitution = [] },
       loading,
     } = this.props;
 
@@ -217,9 +217,9 @@ export default class CADD extends Component {
         </div>
         <Container maxWidth="lg">
           <main>
-            { cadd.length ? 
+            { academicInstitution.length ? 
               <Grid container>
-                { cadd.map((post) => (
+                { academicInstitution.map((post) => (
                   <div key={JSON.parse(post.content).substring(0, 40)}>
                     <div>
                       {post.align == "right" ? <PictureAlignRight post={post} /> : post.align == "left" ? <PictureAlignLeft post={post} /> : <PictureAlignJustify post={post} />}

@@ -72,7 +72,7 @@ func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfi
 	}
 
 	staticFilePath := path.Join(distFilePath)
-	faviconPath := path.Join(distFilePath, "/favicon.ico")
+	faviconPath := path.Join(distFilePath, "/favicon.png")
 	entryHtmlPath := path.Join(distFilePath, "/index.html")
 	svcWorkerPath := path.Join(distFilePath, "/service-worker.js")
 	routerLogger.Debugf("The UI static file path: %s", staticFilePath)
@@ -119,22 +119,18 @@ func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfi
 	technologyV1Group := v1Group.Group("/technology")
 	technology := handler.NewTechnology(logger)
 	{
-		technologyV1Group.GET("/target-protein", technology.TargetProteinList())
-		technologyV1Group.GET("/cadd", technology.CADDList())
+		technologyV1Group.GET("/target-validation", technology.TargetValidationList())
 		technologyV1Group.GET("/sbdd", technology.SBDDList())
-		technologyV1Group.GET("/del", technology.DELList())
-		technologyV1Group.POST("/target-protein", technology.TargetProteinCreate())
-		technologyV1Group.POST("/cadd", technology.CADDCreate())
+		technologyV1Group.GET("/biomarker-development", technology.BiomarkerList())
+		technologyV1Group.POST("/target-validation", technology.TargetValidationCreate())
 		technologyV1Group.POST("/sbdd", technology.SBDDCreate())
-		technologyV1Group.POST("/del", technology.DELCreate())
-		technologyV1Group.PUT("/target-protein/:id", technology.TargetProteinUpdate())
-		technologyV1Group.PUT("/cadd/:id", technology.CADDUpdate())
+		technologyV1Group.POST("/biomarker-development", technology.BiomarkerCreate())
+		technologyV1Group.PUT("/target-validation/:id", technology.TargetValidationUpdate())
 		technologyV1Group.PUT("/sbdd/:id", technology.SBDDUpdate())
-		technologyV1Group.PUT("/del/:id", technology.DELUpdate())
-		technologyV1Group.DELETE("/target-protein/:id", technology.TargetProteinDelete())
-		technologyV1Group.DELETE("/cadd/:id", technology.CADDDelete())
+		technologyV1Group.PUT("/biomarker-development/:id", technology.BiomarkerUpdate())
+		technologyV1Group.DELETE("/target-validation/:id", technology.TargetValidationDelete())
 		technologyV1Group.DELETE("/sbdd/:id", technology.SBDDDelete())
-		technologyV1Group.DELETE("/del/:id", technology.DELDelete())
+		technologyV1Group.DELETE("/biomarker-development/:id", technology.BiomarkerDelete())
 	}
 
 	////products handler
@@ -152,10 +148,14 @@ func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfi
 	partneringV1Group := v1Group.Group("/partnering")
 	partnering := handler.NewPartnering(logger)
 	{
-		partneringV1Group.GET("", partnering.List())
-		partneringV1Group.PUT("/:id", partnering.Update())
-		partneringV1Group.DELETE("/:id", partnering.Delete())
-		partneringV1Group.POST("", partnering.Create())
+		partneringV1Group.GET("/biotech-company", partnering.BiotechCompanyList())
+		partneringV1Group.GET("/academic-institution", partnering.AcademicInstitutionList())
+		partneringV1Group.PUT("/biotech-company/:id", partnering.BiotechCompanyUpdate())
+		partneringV1Group.PUT("/academic-institution/:id", partnering.AcademicInstitutionUpdate())
+		partneringV1Group.DELETE("/biotech-company/:id", partnering.BiotechCompanyDelete())
+		partneringV1Group.DELETE("/academic-institution/:id", partnering.AcademicInstitutionDelete())
+		partneringV1Group.POST("/biotech-company", partnering.BiotechCompanyCreate())
+		partneringV1Group.POST("/academic-institution", partnering.AcademicInstitutionCreate())
 	}
 
 	//pipeline handler

@@ -15,22 +15,18 @@ import (
 )
 
 type Technology interface {
-	TargetProteinList() gin.HandlerFunc
-	TargetProteinCreate() gin.HandlerFunc
-	TargetProteinUpdate() gin.HandlerFunc
-	TargetProteinDelete() gin.HandlerFunc
-	CADDList() gin.HandlerFunc
-	CADDCreate() gin.HandlerFunc
-	CADDUpdate() gin.HandlerFunc
-	CADDDelete() gin.HandlerFunc
+	TargetValidationList() gin.HandlerFunc
+	TargetValidationCreate() gin.HandlerFunc
+	TargetValidationUpdate() gin.HandlerFunc
+	TargetValidationDelete() gin.HandlerFunc
 	SBDDList()   gin.HandlerFunc
 	SBDDCreate() gin.HandlerFunc
 	SBDDUpdate() gin.HandlerFunc
 	SBDDDelete() gin.HandlerFunc
-	DELList() gin.HandlerFunc
-	DELCreate() gin.HandlerFunc
-	DELUpdate() gin.HandlerFunc
-	DELDelete() gin.HandlerFunc
+	BiomarkerList()   gin.HandlerFunc
+	BiomarkerCreate() gin.HandlerFunc
+	BiomarkerUpdate() gin.HandlerFunc
+	BiomarkerDelete() gin.HandlerFunc
 }
 
 type technology struct {
@@ -45,48 +41,18 @@ func NewTechnology(logger *zap.SugaredLogger) Technology {
 	}
 }
 
-func (t *technology) TargetProteinList() gin.HandlerFunc {
+func (t *technology) TargetValidationList() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			technologyData  dao.TechnologyData
 			response        dao.TechnologyResponse
 		)
 
-		logger := t.Logger.Named("GetTargetProteinPlatformInfo")
+		logger := t.Logger.Named("GetTargetValidationPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
-		records, _ := t.MysqlClient.Query(sql)
-		for _, record := range records {
-			technologyData = dao.TechnologyData{
-				Id:          string(record["id"]),
-				Content:     string(record["content"]),
-				Image:       string(record["image"]),
-				Align:       string(record["align"]),
-			}
-			technologyDataList = append(technologyDataList, technologyData)
-		}
-
-		logger.Infof("Succeeded to get the record from database.")
-		response.Data = technologyDataList
-		dao.Success(c, &response, http.StatusOK)
-		return
-	}
-}
-
-func (t *technology) CADDList() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var (
-			technologyData  dao.TechnologyData
-			response        dao.TechnologyResponse
-		)
-
-		logger := t.Logger.Named("GetCADDPlatformInfo")
-		lang := c.Query("lang")
-
-		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_cadd where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_target_validation where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -135,18 +101,18 @@ func (t *technology) SBDDList() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) DELList() gin.HandlerFunc {
+func (t *technology) BiomarkerList() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			technologyData  dao.TechnologyData
 			response        dao.TechnologyResponse
 		)
 
-		logger := t.Logger.Named("GetDELPlatformInfo")
+		logger := t.Logger.Named("GetBiomarkerPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_del where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_biomarker where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -165,18 +131,18 @@ func (t *technology) DELList() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) TargetProteinCreate() gin.HandlerFunc {
+func (t *technology) TargetValidationCreate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			technologyData  dao.TechnologyData
 			response        dao.TechnologyResponse
 		)
 
-		logger := t.Logger.Named("CreateTargetProteinPlatformInfo")
+		logger := t.Logger.Named("CreateTargetValidationPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_target_validation where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -195,7 +161,7 @@ func (t *technology) TargetProteinCreate() gin.HandlerFunc {
 			return
 		}
 
-		record := &dao.BTargetProtein{
+		record := &dao.BTargetValidation{
 			Content:     technologyData.Content,
 			Image:       technologyData.Image,
 			Align:       technologyData.Align,
@@ -204,62 +170,9 @@ func (t *technology) TargetProteinCreate() gin.HandlerFunc {
 		_, err := t.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Fail to add the targetProtein record: %s", err.Error())
+			logger.Errorf("Fail to add the targetValidation record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError,
-				fmt.Sprintf("Failed to add the targetProtein record!"))
-			return
-		}
-		technologyData.Id = strconv.FormatInt(record.Id, 10)
-		technologyDataList = append(technologyDataList, technologyData)
-		response.Data = technologyDataList
-		logger.Debugf("Add a record id: %s into database.", record.Id)
-		dao.Success(c, &response, http.StatusCreated)
-		return
-	}
-}
-
-func (t *technology) CADDCreate() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var (
-			technologyData  dao.TechnologyData
-			response        dao.TechnologyResponse
-		)
-
-		logger := t.Logger.Named("CreateCADDPlatformInfo")
-		lang := c.Query("lang")
-
-		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_cadd where lang='%s';", lang)
-		records, _ := t.MysqlClient.Query(sql)
-		for _, record := range records {
-			technologyData = dao.TechnologyData{
-				Id:          string(record["id"]),
-				Content:     string(record["content"]),
-				Image:       string(record["image"]),
-				Align:       string(record["align"]),
-			}
-			technologyDataList = append(technologyDataList, technologyData)
-		}
-
-		if err := c.ShouldBindBodyWith(&technologyData, binding.JSON); err != nil {
-			response.Data = technologyDataList
-			logger.Errorf("Failed to bind request: %s", err.Error())
-			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
-			return
-		}
-
-		record := &dao.BCADD{
-			Content:     technologyData.Content,
-			Image:       technologyData.Image,
-			Align:       technologyData.Align,
-			Lang:        lang,
-		}
-		_, err := t.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
-		if err != nil {
-			response.Data = technologyDataList
-			logger.Errorf("Failed to add the CADD record: %s", err.Error())
-			dao.FailWithMessage(c, &response, http.StatusInternalServerError,
-				fmt.Sprintf("Failed to add the CADD record!"))
+				fmt.Sprintf("Failed to add the targetValidation record!"))
 			return
 		}
 		technologyData.Id = strconv.FormatInt(record.Id, 10)
@@ -324,18 +237,18 @@ func (t *technology) SBDDCreate() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) DELCreate() gin.HandlerFunc {
+func (t *technology) BiomarkerCreate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			technologyData  dao.TechnologyData
 			response        dao.TechnologyResponse
 		)
 
-		logger := t.Logger.Named("CreateDELPlatformInfo")
+		logger := t.Logger.Named("CreateBiomarkerPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_del where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_biomarker where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -354,7 +267,7 @@ func (t *technology) DELCreate() gin.HandlerFunc {
 			return
 		}
 
-		record := &dao.BDEL{
+		record := &dao.BBiomarker{
 			Content:     technologyData.Content,
 			Image:       technologyData.Image,
 			Align:       technologyData.Align,
@@ -363,9 +276,9 @@ func (t *technology) DELCreate() gin.HandlerFunc {
 		_, err := t.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Failed to add the DEL record: %s", err.Error())
+			logger.Errorf("Failed to add the biomarker record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError,
-				fmt.Sprintf("Failed to add the DEL record!"))
+				fmt.Sprintf("Failed to add the biomarker record!"))
 			return
 		}
 		technologyData.Id = strconv.FormatInt(record.Id, 10)
@@ -377,18 +290,18 @@ func (t *technology) DELCreate() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) TargetProteinUpdate() gin.HandlerFunc {
+func (t *technology) TargetValidationUpdate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			technologyData  dao.TechnologyData
 			response        dao.TechnologyResponse
 		)
 
-		logger := t.Logger.Named("UpdateTargetProteinPlatformInfo")
+		logger := t.Logger.Named("UpdateTargetValidationPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_target_validation where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -409,7 +322,7 @@ func (t *technology) TargetProteinUpdate() gin.HandlerFunc {
 
 		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		record := &dao.BTargetProtein{
+		record := &dao.BTargetValidation{
 			Content:     technologyData.Content,
 			Image:       technologyData.Image,
 			Align:       technologyData.Align,
@@ -420,73 +333,7 @@ func (t *technology) TargetProteinUpdate() gin.HandlerFunc {
 			"id = ?", technologyId).Update(record)
 		if err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Failed to update the targetProtein record: %s", err.Error())
-			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
-			return
-		}
-
-		for index, data := range technologyDataList {
-			if data.Id == c.Param("id") {
-				technologyDataList[index] = dao.TechnologyData{
-					Id:          data.Id,
-					Content:     record.Content,
-					Image:       record.Image,
-					Align:       record.Align,
-				}
-				break
-			}
-		}
-		response.Data = technologyDataList
-		logger.Debugf("Update a record id: %s into database.", record.Id)
-		dao.Success(c, &response, http.StatusOK)
-		return
-	}
-}
-
-func (t *technology) CADDUpdate() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var (
-			technologyData  dao.TechnologyData
-			response        dao.TechnologyResponse
-		)
-
-		logger := t.Logger.Named("UpdateCADDPlatformInfo")
-		lang := c.Query("lang")
-
-		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_cadd where lang='%s';", lang)
-		records, _ := t.MysqlClient.Query(sql)
-		for _, record := range records {
-			technologyData = dao.TechnologyData{
-				Id:          string(record["id"]),
-				Content:     string(record["content"]),
-				Image:       string(record["image"]),
-				Align:       string(record["align"]),
-			}
-			technologyDataList = append(technologyDataList, technologyData)
-		}
-
-		if err := c.ShouldBindBodyWith(&technologyData, binding.JSON); err != nil {
-			response.Data = technologyDataList
-			logger.Errorf("Failed to bind request: %s", err.Error())
-			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
-			return
-		}
-
-		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
-
-		record := &dao.BCADD{
-			Content:     technologyData.Content,
-			Image:       technologyData.Image,
-			Align:       technologyData.Align,
-			Lang:        lang,
-		}
-
-		_, err := t.MysqlClient.Omit("created_time", "updated_time").Where(
-			"id = ?", technologyId).Update(record)
-		if err != nil {
-			response.Data = technologyDataList
-			logger.Errorf("Failed to update the CADD record: %s", err.Error())
+			logger.Errorf("Failed to update the targetValidation record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}
@@ -575,18 +422,18 @@ func (t *technology) SBDDUpdate() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) DELUpdate() gin.HandlerFunc {
+func (t *technology) BiomarkerUpdate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			technologyData  dao.TechnologyData
 			response        dao.TechnologyResponse
 		)
 
-		logger := t.Logger.Named("UpdateDELPlatformInfo")
+		logger := t.Logger.Named("UpdateBiomarkerPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_del where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_biomarker where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -607,7 +454,7 @@ func (t *technology) DELUpdate() gin.HandlerFunc {
 
 		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		record := &dao.BDEL{
+		record := &dao.BBiomarker{
 			Content:     technologyData.Content,
 			Image:       technologyData.Image,
 			Align:       technologyData.Align,
@@ -618,7 +465,7 @@ func (t *technology) DELUpdate() gin.HandlerFunc {
 			"id = ?", technologyId).Update(record)
 		if err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Failed to update the DEL record: %s", err.Error())
+			logger.Errorf("Failed to update the biomarker record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}
@@ -641,18 +488,18 @@ func (t *technology) DELUpdate() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) TargetProteinDelete() gin.HandlerFunc {
+func (t *technology) TargetValidationDelete() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			indexDeleted       int
 			technologyData     dao.TechnologyData
 			response           dao.TechnologyResponse
 		)
-		logger := t.Logger.Named("DeleteTargetProteinPlatformInfo")
+		logger := t.Logger.Named("DeleteTargetValidationPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_target_protein where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_target_validation where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -666,57 +513,10 @@ func (t *technology) TargetProteinDelete() gin.HandlerFunc {
 
 		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BTargetProtein{})
+		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BTargetValidation{})
 		if err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Failed to delete the targetProtein record: %s", err.Error())
-			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
-			return
-		}
-
-		for index, data := range technologyDataList {
-			if data.Id == c.Param("id") {
-				indexDeleted = index
-				break
-			}
-		}
-
-		technologyDataList = append(technologyDataList[:indexDeleted], technologyDataList[indexDeleted + 1:]...)
-		response.Data = technologyDataList
-		logger.Debugf("Succeeded to delete a record.")
-		dao.Success(c, &response, http.StatusOK)
-	}
-}
-
-func (t *technology) CADDDelete() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var (
-			indexDeleted       int
-			technologyData     dao.TechnologyData
-			response           dao.TechnologyResponse
-		)
-		logger := t.Logger.Named("DeleteCADDPlatformInfo")
-		lang := c.Query("lang")
-
-		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_cadd where lang='%s';", lang)
-		records, _ := t.MysqlClient.Query(sql)
-		for _, record := range records {
-			technologyData = dao.TechnologyData{
-				Id:          string(record["id"]),
-				Content:     string(record["content"]),
-				Image:       string(record["image"]),
-				Align:       string(record["align"]),
-			}
-			technologyDataList = append(technologyDataList, technologyData)
-		}
-
-		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
-
-		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BCADD{})
-		if err != nil {
-			response.Data = technologyDataList
-			logger.Errorf("Failed to delete the CADD record: %s", err.Error())
+			logger.Errorf("Failed to delete the targetValidation record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}
@@ -782,18 +582,18 @@ func (t *technology) SBDDDelete() gin.HandlerFunc {
 	}
 }
 
-func (t *technology) DELDelete() gin.HandlerFunc {
+func (t *technology) BiomarkerDelete() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			indexDeleted       int
 			technologyData     dao.TechnologyData
 			response           dao.TechnologyResponse
 		)
-		logger := t.Logger.Named("DeleteDELPlatformInfo")
+		logger := t.Logger.Named("DeleteBiomarkerPlatformInfo")
 		lang := c.Query("lang")
 
 		technologyDataList := make([]dao.TechnologyData, 0)
-		sql := fmt.Sprintf("select * from b_del where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_biomarker where lang='%s';", lang)
 		records, _ := t.MysqlClient.Query(sql)
 		for _, record := range records {
 			technologyData = dao.TechnologyData{
@@ -807,10 +607,10 @@ func (t *technology) DELDelete() gin.HandlerFunc {
 
 		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BDEL{})
+		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BBiomarker{})
 		if err != nil {
 			response.Data = technologyDataList
-			logger.Errorf("Failed to delete the DEL record: %s", err.Error())
+			logger.Errorf("Failed to delete the biomarker record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}

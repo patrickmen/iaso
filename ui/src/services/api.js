@@ -35,13 +35,13 @@ export async function removeAboutUs(params) {
   });
 }
 
-// Target Protein API
-export async function queryTargetProteinList(params) {
-  return request(`/api/v1/technology/target-protein?${stringify(params)}`);
+// Target Validation API
+export async function queryTargetValidationList(params) {
+  return request(`/api/v1/technology/target-validation?${stringify(params)}`);
 }
 
-export async function addTargetProtein(params) {
-  return request(`/api/v1/technology/target-protein?lang=${params.lang}`, {
+export async function addTargetValidation(params) {
+  return request(`/api/v1/technology/target-validation?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -50,8 +50,8 @@ export async function addTargetProtein(params) {
   });
 }
 
-export async function updateTargetProtein(params) {
-  return request(`/api/v1/technology/target-protein/${params.id}?lang=${params.lang}`, {
+export async function updateTargetValidation(params) {
+  return request(`/api/v1/technology/target-validation/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -60,42 +60,8 @@ export async function updateTargetProtein(params) {
   });
 }
 
-export async function removeTargetProtein(params) {
-  return request(`/api/v1/technology/target-protein/${params.id}?lang=${params.lang}`, {
-    method: 'DELETE',
-    body: {
-      method: 'delete',
-    },
-  });
-}
-
-// CADD API
-export async function queryCADDList(params) {
-  return request(`/api/v1/technology/cadd?${stringify(params)}`);
-}
-
-export async function addCADD(params) {
-  return request(`/api/v1/technology/cadd?lang=${params.lang}`, {
-    method: 'POST',
-    body: {
-      ...params,
-      method: 'post',
-    },
-  });
-}
-
-export async function updateCADD(params) {
-  return request(`/api/v1/technology/cadd/${params.id}?lang=${params.lang}`, {
-    method: 'PUT',
-    body: {
-      ...params,
-      method: 'update',
-    },
-  });
-}
-
-export async function removeCADD(params) {
-  return request(`/api/v1/technology/cadd/${params.id}?lang=${params.lang}`, {
+export async function removeTargetValidation(params) {
+  return request(`/api/v1/technology/target-validation/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -137,13 +103,13 @@ export async function removeSBDD(params) {
   });
 }
 
-// DEL API
-export async function queryDELList(params) {
-  return request(`/api/v1/technology/del?${stringify(params)}`);
+// Biomarker API
+export async function queryBiomarkerList(params) {
+  return request(`/api/v1/technology/biomarker-development?${stringify(params)}`);
 }
 
-export async function addDEL(params) {
-  return request(`/api/v1/technology/del?lang=${params.lang}`, {
+export async function addBiomarker(params) {
+  return request(`/api/v1/technology/biomarker-development?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -152,8 +118,8 @@ export async function addDEL(params) {
   });
 }
 
-export async function updateDEL(params) {
-  return request(`/api/v1/technology/del/${params.id}?lang=${params.lang}`, {
+export async function updateBiomarker(params) {
+  return request(`/api/v1/technology/biomarker-development/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -162,8 +128,8 @@ export async function updateDEL(params) {
   });
 }
 
-export async function removeDEL(params) {
-  return request(`/api/v1/technology/del/${params.id}?lang=${params.lang}`, {
+export async function removeBiomarker(params) {
+  return request(`/api/v1/technology/biomarker-development/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
@@ -205,13 +171,13 @@ export async function removeProduct(params) {
   });
 }
 
-// Partnering API
-export async function queryPartneringList(params) {
-  return request(`/api/v1/partnering?${stringify(params)}`);
+// Academic Institution API
+export async function queryAcademicInstitutionList(params) {
+  return request(`/api/v1/partnering/academic-institution?${stringify(params)}`);
 }
 
-export async function addPartnering(params) {
-  return request(`/api/v1/partnering?lang=${params.lang}`, {
+export async function addAcademicInstitution(params) {
+  return request(`/api/v1/partnering/academic-institution?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -220,8 +186,8 @@ export async function addPartnering(params) {
   });
 }
 
-export async function updatePartnering(params) {
-  return request(`/api/v1/partnering/${params.id}?lang=${params.lang}`, {
+export async function updateAcademicInstitution(params) {
+  return request(`/api/v1/partnering/academic-institution/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -230,8 +196,42 @@ export async function updatePartnering(params) {
   });
 }
 
-export async function removePartnering(params) {
-  return request(`/api/v1/partnering/${params.id}?lang=${params.lang}`, {
+export async function removeAcademicInstitution(params) {
+  return request(`/api/v1/partnering/academic-institution/${params.id}?lang=${params.lang}`, {
+    method: 'DELETE',
+    body: {
+      method: 'delete',
+    },
+  });
+}
+
+// BiotechCompany API
+export async function queryBiotechCompanyList(params) {
+  return request(`/api/v1/partnering/biotech-company?${stringify(params)}`);
+}
+
+export async function addBiotechCompany(params) {
+  return request(`/api/v1/partnering/biotech-company?lang=${params.lang}`, {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
+
+export async function updateBiotechCompany(params) {
+  return request(`/api/v1/partnering/biotech-company/${params.id}?lang=${params.lang}`, {
+    method: 'PUT',
+    body: {
+      ...params,
+      method: 'update',
+    },
+  });
+}
+
+export async function removeBiotechCompany(params) {
+  return request(`/api/v1/partnering/biotech-company/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',

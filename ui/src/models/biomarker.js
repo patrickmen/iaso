@@ -1,15 +1,15 @@
-import { queryTargetProteinList, addTargetProtein, removeTargetProtein, updateTargetProtein } from '@/services/api';
+import { queryBiomarkerList, addBiomarker, removeBiomarker, updateBiomarker } from '@/services/api';
 
 export default {
-  namespace: 'targetProtein',
+  namespace: 'biomarker',
 
   state: {
-    targetProtein: [],
+    biomarker: [],
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryTargetProteinList, payload);
+      const response = yield call(queryBiomarkerList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response.data) ? response.data : [],
@@ -18,9 +18,9 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 2 ? removeTargetProtein : updateTargetProtein;
+        callback = Object.keys(payload).length === 2 ? removeBiomarker : updateBiomarker;
       } else {
-        callback = addTargetProtein;
+        callback = addBiomarker;
       }
       const response = yield call(callback, payload); // post
       yield put({
@@ -34,7 +34,7 @@ export default {
     queryList(state, action) {
       return {
         ...state,
-        targetProtein: action.payload,
+        biomarker: action.payload,
       };
     },
   },

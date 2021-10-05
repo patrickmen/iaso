@@ -1,15 +1,15 @@
-import { queryCADDList, addCADD, removeCADD, updateCADD } from '@/services/api';
+import { queryAcademicInstitutionList, addAcademicInstitution, removeAcademicInstitution, updateAcademicInstitution } from '@/services/api';
 
 export default {
-  namespace: 'cadd',
+  namespace: 'academicInstitution',
 
   state: {
-    cadd: [],
+    academicInstitution: [],
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryCADDList, payload);
+      const response = yield call(queryAcademicInstitutionList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response.data) ? response.data : [],
@@ -18,9 +18,9 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 2 ? removeCADD : updateCADD;
+        callback = Object.keys(payload).length === 2 ? removeAcademicInstitution : updateAcademicInstitution;
       } else {
-        callback = addCADD;
+        callback = addAcademicInstitution;
       }
       const response = yield call(callback, payload); // post
       yield put({
@@ -34,7 +34,7 @@ export default {
     queryList(state, action) {
       return {
         ...state,
-        cadd: action.payload,
+        academicInstitution: action.payload,
       };
     },
   },

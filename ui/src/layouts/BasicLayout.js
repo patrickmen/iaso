@@ -92,7 +92,7 @@ class BasicLayout extends React.PureComponent {
     const currRouterData = this.matchParamsPath(pathname, breadcrumbNameMap);
 
     if (!currRouterData) {
-      return title;
+      return `${title}`;
     }
     const pageName = formatMessage({
       id: currRouterData.locale || currRouterData.name,

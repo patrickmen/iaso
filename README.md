@@ -10,12 +10,13 @@ A backend management system for website design. The frontend UI uses [Ant Design
 - Home
 - About US
 - Technology
-  - Gene To Protein Platform
-  - CADD Platform
+  - Target Validation Platform
   - SBDD Platform
-  - DEL Platform
+  - Biomarker Development Platform
 - Pipeline
 - Partnering
+  - Academic Institution
+  - Biotech Company
 - News
 - Careers
 - Contact US

@@ -1,15 +1,15 @@
-import { queryDELList, addDEL, removeDEL, updateDEL } from '@/services/api';
+import { queryTargetValidationList, addTargetValidation, removeTargetValidation, updateTargetValidation } from '@/services/api';
 
 export default {
-  namespace: 'del',
+  namespace: 'targetValidation',
 
   state: {
-    del: [],
+    targetValidation: [],
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryDELList, payload);
+      const response = yield call(queryTargetValidationList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response.data) ? response.data : [],
@@ -18,9 +18,9 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 2 ? removeDEL : updateDEL;
+        callback = Object.keys(payload).length === 2 ? removeTargetValidation : updateTargetValidation;
       } else {
-        callback = addDEL;
+        callback = addTargetValidation;
       }
       const response = yield call(callback, payload); // post
       yield put({
@@ -34,7 +34,7 @@ export default {
     queryList(state, action) {
       return {
         ...state,
-        del: action.payload,
+        targetValidation: action.payload,
       };
     },
   },

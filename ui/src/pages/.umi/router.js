@@ -8,7 +8,7 @@ import {
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@@/history';
-import RendererWrapper0 from '/Users/jenson/go/src/iaso/ui/src/pages/.umi/LocaleWrapper.jsx';
+import RendererWrapper0 from '/Users/patrick/go/src/iaso/ui/src/pages/.umi/LocaleWrapper.jsx';
 import _dvaDynamic from 'dva/dynamic';
 
 const Router = require('dva/router').routerRedux.ConnectedRouter;
@@ -20,7 +20,7 @@ const routes = [
       ? _dvaDynamic({
           component: () =>
             import(/* webpackChunkName: "p__Login__Login" */ '../Login/Login'),
-          LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+          LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
             .default,
         })
       : require('../Login/Login').default,
@@ -32,7 +32,7 @@ const routes = [
       ? _dvaDynamic({
           component: () =>
             import(/* webpackChunkName: "layouts__BasicLayout" */ '../../layouts/BasicLayout'),
-          LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+          LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/BasicLayout').default,
@@ -49,7 +49,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__AboutUs__About" */ '../AboutUs/About'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                 .default,
             })
           : require('../AboutUs/About').default,
@@ -60,29 +60,16 @@ const routes = [
         name: 'TECHNOLOGY',
         routes: [
           {
-            path: '/technology/gene-to-protein-platform',
-            name: 'GENE-TO-PROTEIN-PLATFORM',
+            path: '/technology/target-validation-platform',
+            name: 'TARGET-VALIDATION-PLATFORM',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/TargetProtein'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/TargetValidation'),
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
-              : require('../Technology/TargetProtein').default,
-            exact: true,
-          },
-          {
-            path: '/technology/cadd-platform',
-            name: 'CADD-PLATFORM',
-            component: __IS_BROWSER
-              ? _dvaDynamic({
-                  component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/CADD'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
-                    .default,
-                })
-              : require('../Technology/CADD').default,
+              : require('../Technology/TargetValidation').default,
             exact: true,
           },
           {
@@ -92,23 +79,23 @@ const routes = [
               ? _dvaDynamic({
                   component: () =>
                     import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/SBDD'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Technology/SBDD').default,
             exact: true,
           },
           {
-            path: '/technology/del-platform',
-            name: 'DEL-PLATFORM',
+            path: '/technology/biomarker-development-platform',
+            name: 'BIOMARKER-DEVELOPMENT-PLATFORM',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/DEL'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Technology/Biomarker'),
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
-              : require('../Technology/DEL').default,
+              : require('../Technology/Biomarker').default,
             exact: true,
           },
           {
@@ -116,7 +103,7 @@ const routes = [
               ? _dvaDynamic({
                   component: () =>
                     import(/* webpackChunkName: "layouts__BasicLayout" */ '../404'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
               : require('../404').default,
@@ -125,7 +112,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('/Users/jenson/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                require('/Users/patrick/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -139,7 +126,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__Pipeline__Pipeline" */ '../Pipeline/Pipeline'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                 .default,
             })
           : require('../Pipeline/Pipeline').default,
@@ -148,15 +135,53 @@ const routes = [
       {
         path: '/partnering',
         name: 'PARTNERING',
-        component: __IS_BROWSER
-          ? _dvaDynamic({
-              component: () =>
-                import(/* webpackChunkName: "p__Partnering__Partnering" */ '../Partnering/Partnering'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
-                .default,
-            })
-          : require('../Partnering/Partnering').default,
-        exact: true,
+        routes: [
+          {
+            path: '/partnering/academic-institution',
+            name: 'ACADEMIC-INSTITUTION',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Partnering/AcademicInstitution'),
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../Partnering/AcademicInstitution').default,
+            exact: true,
+          },
+          {
+            path: '/partnering/biotech-company',
+            name: 'BIOTECH-COMPANY',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Partnering/BiotechCompany'),
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../Partnering/BiotechCompany').default,
+            exact: true,
+          },
+          {
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../404'),
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../404').default,
+            exact: true,
+          },
+          {
+            component: () =>
+              React.createElement(
+                require('/Users/patrick/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                  .default,
+                { pagesPath: 'src/pages', hasRoutesInConfig: true },
+              ),
+          },
+        ],
       },
       {
         path: '/news',
@@ -165,7 +190,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__News__News" */ '../News/News'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                 .default,
             })
           : require('../News/News').default,
@@ -178,7 +203,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__Careers__Careers" */ '../Careers/Careers'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                 .default,
             })
           : require('../Careers/Careers').default,
@@ -196,7 +221,7 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import(/* webpackChunkName: 'p__Exception__models__error.js' */ '/Users/jenson/go/src/iaso/ui/src/pages/Exception/models/error.js').then(
+                    import(/* webpackChunkName: 'p__Exception__models__error.js' */ '/Users/patrick/go/src/iaso/ui/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
@@ -204,7 +229,7 @@ const routes = [
                   ],
                   component: () =>
                     import(/* webpackChunkName: "layouts__BasicLayout" */ '../Exception/403'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/403').default,
@@ -217,7 +242,7 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import(/* webpackChunkName: 'p__Exception__models__error.js' */ '/Users/jenson/go/src/iaso/ui/src/pages/Exception/models/error.js').then(
+                    import(/* webpackChunkName: 'p__Exception__models__error.js' */ '/Users/patrick/go/src/iaso/ui/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
@@ -225,7 +250,7 @@ const routes = [
                   ],
                   component: () =>
                     import(/* webpackChunkName: "layouts__BasicLayout" */ '../Exception/404'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/404').default,
@@ -238,7 +263,7 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import(/* webpackChunkName: 'p__Exception__models__error.js' */ '/Users/jenson/go/src/iaso/ui/src/pages/Exception/models/error.js').then(
+                    import(/* webpackChunkName: 'p__Exception__models__error.js' */ '/Users/patrick/go/src/iaso/ui/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
@@ -246,7 +271,7 @@ const routes = [
                   ],
                   component: () =>
                     import(/* webpackChunkName: "layouts__BasicLayout" */ '../Exception/500'),
-                  LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/500').default,
@@ -255,7 +280,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('/Users/jenson/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                require('/Users/patrick/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -270,7 +295,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__Preview" */ '../Preview'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                 .default,
             })
           : require('../Preview').default,
@@ -281,7 +306,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__404" */ '../404'),
-              LoadingComponent: require('/Users/jenson/go/src/iaso/ui/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                 .default,
             })
           : require('../404').default,
@@ -290,7 +315,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('/Users/jenson/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('/Users/patrick/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -300,7 +325,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('/Users/jenson/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('/Users/patrick/go/src/iaso/ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),

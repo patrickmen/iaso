@@ -18,7 +18,7 @@ export default class GlobalHeaderRight extends PureComponent {
     return (
       <div className={className}>
         {/* <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} /> */}
-        <Icon type="user" style={{color: "#9cc844"}} />
+        <Icon type="user" style={{color: "#61bcca"}} />
         <SelectLang className={styles.action} />
       </div>
     );

@@ -24,17 +24,7 @@ type BAboutUs struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
-type BTargetProtein struct {
-	Id                int64
-	Content           string    `xorm:"content"`
-	Image             string    `xorm:"image"`
-	Align             string    `xorm:"align"`
-	Lang              string    `xorm:"lang"`
-	CreatedAt         time.Time `xorm:"created_time"`
-	UpdatedAt         time.Time `xorm:"updated_time"`
-}
-
-type BCADD struct {
+type BTargetValidation struct {
 	Id                int64
 	Content           string    `xorm:"content"`
 	Image             string    `xorm:"image"`
@@ -54,7 +44,7 @@ type BSBDD struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
-type BDEL struct {
+type BBiomarker struct {
 	Id                int64
 	Content           string    `xorm:"content"`
 	Image             string    `xorm:"image"`
@@ -97,7 +87,17 @@ type BNews struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
-type BPartnering struct {
+type BBiotechCompany struct {
+	Id                int64
+	Content           string    `xorm:"content"`
+	Image             string    `xorm:"image"`
+	Align             string    `xorm:"align"`
+	Lang              string    `xorm:"lang"`
+	CreatedAt         time.Time `xorm:"created_time"`
+	UpdatedAt         time.Time `xorm:"updated_time"`
+}
+
+type BAcademicInstitution struct {
 	Id                int64
 	Content           string    `xorm:"content"`
 	Image             string    `xorm:"image"`

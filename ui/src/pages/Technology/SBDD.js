@@ -14,9 +14,8 @@ import Exception404 from '@/pages/ExceptionBeta/E404';
 
 
 const headFeaturedPost = {
-  title: 'MEET LOFLY BIO',
-  description:
-    "A Biopharmaceutical company, devoted to help the general public and investors better.",
+  title: "",
+  description: "",
   image: 'https://cdn.pharmcafe.com/platform-banner-01.jpg',
   imgText: 'head image description',
 };

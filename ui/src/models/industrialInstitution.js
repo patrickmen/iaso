@@ -1,15 +1,15 @@
-import { queryBiotechCompanyList, addBiotechCompany, removeBiotechCompany, updateBiotechCompany } from '@/services/api';
+import { queryIndustrialInstitutionList, addIndustrialInstitution, removeIndustrialInstitution, updateIndustrialInstitution } from '@/services/api';
 
 export default {
-  namespace: 'biotechCompany',
+  namespace: 'industrialInstitution',
 
   state: {
-    biotechCompany: [],
+    industrialInstitution: [],
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryBiotechCompanyList, payload);
+      const response = yield call(queryIndustrialInstitutionList, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response.data) ? response.data : [],
@@ -18,9 +18,9 @@ export default {
     *submit({ payload }, { call, put }) {
       let callback;
       if (payload.id) {
-        callback = Object.keys(payload).length === 2 ? removeBiotechCompany : updateBiotechCompany;
+        callback = Object.keys(payload).length === 2 ? removeIndustrialInstitution : updateIndustrialInstitution;
       } else {
-        callback = addBiotechCompany;
+        callback = addIndustrialInstitution;
       }
       const response = yield call(callback, payload); // post
       yield put({
@@ -34,7 +34,7 @@ export default {
     queryList(state, action) {
       return {
         ...state,
-        biotechCompany: action.payload,
+        industrialInstitution: action.payload,
       };
     },
   },

@@ -75,9 +75,9 @@ export default [
             component: './Partnering/AcademicInstitution',
           },
           {
-            path: '/partnering/biotech-company',
-            name: 'BIOTECH-COMPANY',
-            component: './Partnering/BiotechCompany',
+            path: '/partnering/industrial-institution',
+            name: 'INDUSTRIAL-INSTITUTION',
+            component: './Partnering/IndustrialInstitution',
           },
           {
             component: '404',

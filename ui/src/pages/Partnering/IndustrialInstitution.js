@@ -59,13 +59,13 @@ const CreateForm = Form.create()(props => {
   );
 });
 
-@connect(({ biotechCompany, loading }) => ({
-  biotechCompany,
-  loading: loading.models.biotechCompany,
+@connect(({ industrialInstitution, loading }) => ({
+  industrialInstitution,
+  loading: loading.models.industrialInstitution,
 }))
 
 @Form.create()
-export default class BiotechCompany extends Component {
+export default class IndustrialInstitution extends Component {
   // state = {
   //   markdown: [],
   // }
@@ -85,7 +85,7 @@ export default class BiotechCompany extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'biotechCompany/fetch',
+      type: 'industrialInstitution/fetch',
       payload: {
         lang: this.state.currentLang,
       },
@@ -136,7 +136,7 @@ export default class BiotechCompany extends Component {
   handleAdd = (fields, align) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'biotechCompany/submit',
+      type: 'industrialInstitution/submit',
       payload: {
         lang: this.state.currentLang,
         content: JSON.stringify(fields.content),
@@ -152,7 +152,7 @@ export default class BiotechCompany extends Component {
     const { dispatch } = this.props;
     const { currentId } = this.state;
     dispatch({
-      type: 'biotechCompany/submit',
+      type: 'industrialInstitution/submit',
       payload: {
         id: currentId,
         lang: this.state.currentLang,
@@ -178,7 +178,7 @@ export default class BiotechCompany extends Component {
   handleDelete = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'biotechCompany/submit',
+      type: 'industrialInstitution/submit',
       payload: {
         id: id,
         lang: this.state.currentLang,
@@ -196,7 +196,7 @@ export default class BiotechCompany extends Component {
 
   render() {
     const {
-      biotechCompany: { biotechCompany = [] },
+      industrialInstitution: { industrialInstitution = [] },
       loading,
     } = this.props;
 
@@ -217,9 +217,9 @@ export default class BiotechCompany extends Component {
         </div>
         <Container maxWidth="lg">
           <main>
-            { biotechCompany.length ? 
+            { industrialInstitution.length ?
               <Grid container>
-                { biotechCompany.map((post) => (
+                { industrialInstitution.map((post) => (
                   <div key={JSON.parse(post.content).substring(0, 40)}>
                     <div>
                       {post.align == "right" ? <PictureAlignRight post={post} /> : post.align == "left" ? <PictureAlignLeft post={post} /> : <PictureAlignJustify post={post} />}

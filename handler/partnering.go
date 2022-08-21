@@ -19,10 +19,10 @@ type Partnering interface {
 	AcademicInstitutionCreate() gin.HandlerFunc
 	AcademicInstitutionUpdate() gin.HandlerFunc
 	AcademicInstitutionDelete() gin.HandlerFunc
-	BiotechCompanyList()   gin.HandlerFunc
-	BiotechCompanyCreate() gin.HandlerFunc
-	BiotechCompanyUpdate() gin.HandlerFunc
-	BiotechCompanyDelete() gin.HandlerFunc
+	IndustrialInstitutionList()   gin.HandlerFunc
+	IndustrialInstitutionCreate() gin.HandlerFunc
+	IndustrialInstitutionUpdate() gin.HandlerFunc
+	IndustrialInstitutionDelete() gin.HandlerFunc
 }
 
 type partnering struct {
@@ -37,18 +37,18 @@ func NewPartnering(logger *zap.SugaredLogger) Partnering {
 	}
 }
 
-func (pt *partnering) BiotechCompanyList() gin.HandlerFunc {
+func (pt *partnering) IndustrialInstitutionList() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			partneringData    dao.PartneringData
 			response          dao.PartneringResponse
 		)
 
-		logger := pt.Logger.Named("GetBiotechCompanyInfo")
+		logger := pt.Logger.Named("GetIndustrialInstitutionInfo")
 		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := fmt.Sprintf("select * from b_biotech_company where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_industrial_institution where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -97,18 +97,18 @@ func (pt *partnering) AcademicInstitutionList() gin.HandlerFunc {
 	}
 }
 
-func (pt *partnering) BiotechCompanyCreate() gin.HandlerFunc {
+func (pt *partnering) IndustrialInstitutionCreate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			partneringData     dao.PartneringData
 			response           dao.PartneringResponse
 		)
 
-		logger := pt.Logger.Named("CreateBiotechCompanyInfo")
+		logger := pt.Logger.Named("CreateIndustrialInstitutionInfo")
 		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := fmt.Sprintf("select * from b_biotech_company where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_industrial_institution where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -127,7 +127,7 @@ func (pt *partnering) BiotechCompanyCreate() gin.HandlerFunc {
 			return
 		}
 
-		record := &dao.BBiotechCompany{
+		record := &dao.BIndustrialInstitution{
 			Content:     partneringData.Content,
 			Image:       partneringData.Image,
 			Align:       partneringData.Align,
@@ -136,8 +136,8 @@ func (pt *partnering) BiotechCompanyCreate() gin.HandlerFunc {
 		_, err := pt.MysqlClient.Omit("created_time", "updated_time").InsertOne(record)
 		if err != nil {
 			response.Data = partneringDataList
-			logger.Errorf("Failed to add the biotechCompany record: %s", err.Error())
-			dao.FailWithMessage(c, &response, http.StatusInternalServerError, fmt.Sprintf("Failed to add the biotechCompany record!"))
+			logger.Errorf("Failed to add the industrialInstitution record: %s", err.Error())
+			dao.FailWithMessage(c, &response, http.StatusInternalServerError, fmt.Sprintf("Failed to add the industrialInstitution record!"))
 			return
 		}
 		partneringData.Id = strconv.FormatInt(record.Id, 10)
@@ -201,18 +201,18 @@ func (pt *partnering) AcademicInstitutionCreate() gin.HandlerFunc {
 	}
 }
 
-func (pt *partnering) BiotechCompanyUpdate() gin.HandlerFunc {
+func (pt *partnering) IndustrialInstitutionUpdate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			partneringData   dao.PartneringData
 			response         dao.PartneringResponse
 		)
 
-		logger := pt.Logger.Named("UpdateBiotechCompanyInfo")
+		logger := pt.Logger.Named("UpdateIndustrialInstitutionInfo")
 		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := fmt.Sprintf("select * from b_biotech_company where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_industrial_institution where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -233,7 +233,7 @@ func (pt *partnering) BiotechCompanyUpdate() gin.HandlerFunc {
 
 		partneringId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		record := &dao.BBiotechCompany{
+		record := &dao.BIndustrialInstitution{
 			Content:      partneringData.Content,
 			Image:        partneringData.Image,
 			Align:        partneringData.Align,
@@ -244,7 +244,7 @@ func (pt *partnering) BiotechCompanyUpdate() gin.HandlerFunc {
 			"id = ?", partneringId).Update(record)
 		if err != nil {
 			response.Data = partneringDataList
-			logger.Errorf("Failed to update the biotechCompany record: %s", err.Error())
+			logger.Errorf("Failed to update the industrialInstitution record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}
@@ -333,18 +333,18 @@ func (pt *partnering) AcademicInstitutionUpdate() gin.HandlerFunc {
 	}
 }
 
-func (pt *partnering) BiotechCompanyDelete() gin.HandlerFunc {
+func (pt *partnering) IndustrialInstitutionDelete() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var (
 			indexDeleted       int
 			partneringData     dao.PartneringData
 			response           dao.PartneringResponse
 		)
-		logger := pt.Logger.Named("DeleteBiotechCompanyInfo")
+		logger := pt.Logger.Named("DeleteIndustrialInstitutionInfo")
 		lang := c.Query("lang")
 
 		partneringDataList := make([]dao.PartneringData, 0)
-		sql := fmt.Sprintf("select * from b_biotech_company where lang='%s';", lang)
+		sql := fmt.Sprintf("select * from b_industrial_institution where lang='%s';", lang)
 		records, _ := pt.MysqlClient.Query(sql)
 		for _, record := range records {
 			partneringData = dao.PartneringData{
@@ -358,10 +358,10 @@ func (pt *partnering) BiotechCompanyDelete() gin.HandlerFunc {
 
 		partneringId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		_, err := pt.MysqlClient.Where("id = ?", partneringId).Delete(dao.BBiotechCompany{})
+		_, err := pt.MysqlClient.Where("id = ?", partneringId).Delete(dao.BIndustrialInstitution{})
 		if err != nil {
 			response.Data = partneringDataList
-			logger.Errorf("Failed to delete the biotechCompany record: %s", err.Error())
+			logger.Errorf("Failed to delete the industrialInstitution record: %s", err.Error())
 			dao.FailWithMessage(c, &response, http.StatusInternalServerError, err.Error())
 			return
 		}

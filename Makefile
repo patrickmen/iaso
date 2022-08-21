@@ -1,3 +1,3 @@
 # Build the docker image
 docker-build:
-	docker build -f ./Dockerfile -t patrickmen/iaso/iaso:v1.2.0 .
+	docker build -f ./Dockerfile -t iaso/iaso:v1.2.1 .

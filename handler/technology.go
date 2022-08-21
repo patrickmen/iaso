@@ -214,7 +214,7 @@ func (t *technology) SBDDCreate() gin.HandlerFunc {
 			return
 		}
 
-		record := &dao.BSBDD{
+		record := &dao.BSbdd{
 			Content:     technologyData.Content,
 			Image:       technologyData.Image,
 			Align:       technologyData.Align,
@@ -388,7 +388,7 @@ func (t *technology) SBDDUpdate() gin.HandlerFunc {
 
 		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		record := &dao.BSBDD{
+		record := &dao.BSbdd{
 			Content:     technologyData.Content,
 			Image:       technologyData.Image,
 			Align:       technologyData.Align,
@@ -560,7 +560,7 @@ func (t *technology) SBDDDelete() gin.HandlerFunc {
 
 		technologyId, _ := strconv.ParseInt(c.Param("id"), 10, 64)
 
-		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BSBDD{})
+		_, err := t.MysqlClient.Where("id = ?", technologyId).Delete(dao.BSbdd{})
 		if err != nil {
 			response.Data = technologyDataList
 			logger.Errorf("Failed to delete the SBDD record: %s", err.Error())

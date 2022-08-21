@@ -72,7 +72,7 @@ func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfi
 	}
 
 	staticFilePath := path.Join(distFilePath)
-	faviconPath := path.Join(distFilePath, "/favicon.png")
+	faviconPath := path.Join(distFilePath, "/favicon.ico")
 	entryHtmlPath := path.Join(distFilePath, "/index.html")
 	svcWorkerPath := path.Join(distFilePath, "/service-worker.js")
 	routerLogger.Debugf("The UI static file path: %s", staticFilePath)
@@ -148,13 +148,13 @@ func Init(logger *zap.SugaredLogger, verbose bool, crossConfig config.CrossConfi
 	partneringV1Group := v1Group.Group("/partnering")
 	partnering := handler.NewPartnering(logger)
 	{
-		partneringV1Group.GET("/biotech-company", partnering.BiotechCompanyList())
+		partneringV1Group.GET("/industrial-institution", partnering.IndustrialInstitutionList())
 		partneringV1Group.GET("/academic-institution", partnering.AcademicInstitutionList())
-		partneringV1Group.PUT("/biotech-company/:id", partnering.BiotechCompanyUpdate())
+		partneringV1Group.PUT("/industrial-institution/:id", partnering.IndustrialInstitutionUpdate())
 		partneringV1Group.PUT("/academic-institution/:id", partnering.AcademicInstitutionUpdate())
-		partneringV1Group.DELETE("/biotech-company/:id", partnering.BiotechCompanyDelete())
+		partneringV1Group.DELETE("/industrial-institution/:id", partnering.IndustrialInstitutionDelete())
 		partneringV1Group.DELETE("/academic-institution/:id", partnering.AcademicInstitutionDelete())
-		partneringV1Group.POST("/biotech-company", partnering.BiotechCompanyCreate())
+		partneringV1Group.POST("/industrial-institution", partnering.IndustrialInstitutionCreate())
 		partneringV1Group.POST("/academic-institution", partnering.AcademicInstitutionCreate())
 	}
 

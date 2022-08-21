@@ -23,9 +23,9 @@ export function _onCreate() {
   app.model({ namespace: 'aboutus', ...(require('/Users/patrick/go/src/iaso/ui/src/models/aboutus.js').default) });
 app.model({ namespace: 'academicInstitution', ...(require('/Users/patrick/go/src/iaso/ui/src/models/academicInstitution.js').default) });
 app.model({ namespace: 'biomarker', ...(require('/Users/patrick/go/src/iaso/ui/src/models/biomarker.js').default) });
-app.model({ namespace: 'biotechCompany', ...(require('/Users/patrick/go/src/iaso/ui/src/models/biotechCompany.js').default) });
 app.model({ namespace: 'careers', ...(require('/Users/patrick/go/src/iaso/ui/src/models/careers.js').default) });
 app.model({ namespace: 'global', ...(require('/Users/patrick/go/src/iaso/ui/src/models/global.js').default) });
+app.model({ namespace: 'industrialInstitution', ...(require('/Users/patrick/go/src/iaso/ui/src/models/industrialInstitution.js').default) });
 app.model({ namespace: 'menu', ...(require('/Users/patrick/go/src/iaso/ui/src/models/menu.js').default) });
 app.model({ namespace: 'news', ...(require('/Users/patrick/go/src/iaso/ui/src/models/news.js').default) });
 app.model({ namespace: 'pipeline', ...(require('/Users/patrick/go/src/iaso/ui/src/models/pipeline.js').default) });

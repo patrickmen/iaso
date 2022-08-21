@@ -11,7 +11,7 @@ export default {
   'menu.PIPELINE': '研发管线',
   'menu.PARTNERING': '合作伙伴',
   'menu.PARTNERING.ACADEMIC-INSTITUTION': '科研机构',
-  'menu.PARTNERING.BIOTECH-COMPANY': '生物制药公司',
+  'menu.PARTNERING.INDUSTRIAL-INSTITUTION': '生物制药公司',
   'menu.NEWS': '新闻资讯',
   'menu.CAREERS': '职业发展',
   'menu.EXCEPTION': '异常项',

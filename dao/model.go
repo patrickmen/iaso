@@ -34,7 +34,7 @@ type BTargetValidation struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
-type BSBDD struct {
+type BSbdd struct {
 	Id                int64
 	Content           string    `xorm:"content"`
 	Image             string    `xorm:"image"`
@@ -87,7 +87,7 @@ type BNews struct {
 	UpdatedAt         time.Time `xorm:"updated_time"`
 }
 
-type BBiotechCompany struct {
+type BIndustrialInstitution struct {
 	Id                int64
 	Content           string    `xorm:"content"`
 	Image             string    `xorm:"image"`

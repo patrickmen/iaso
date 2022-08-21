@@ -150,16 +150,16 @@ const routes = [
             exact: true,
           },
           {
-            path: '/partnering/biotech-company',
-            name: 'BIOTECH-COMPANY',
+            path: '/partnering/industrial-institution',
+            name: 'INDUSTRIAL-INSTITUTION',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
-                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Partnering/BiotechCompany'),
+                    import(/* webpackChunkName: "layouts__BasicLayout" */ '../Partnering/IndustrialInstitution'),
                   LoadingComponent: require('/Users/patrick/go/src/iaso/ui/src/components/PageLoading/index')
                     .default,
                 })
-              : require('../Partnering/BiotechCompany').default,
+              : require('../Partnering/IndustrialInstitution').default,
             exact: true,
           },
           {

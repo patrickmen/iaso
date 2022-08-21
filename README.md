@@ -16,7 +16,7 @@ A backend management system for website design. The frontend UI uses [Ant Design
 - Pipeline
 - Partnering
   - Academic Institution
-  - Biotech Company
+  - Industrial Institution
 - News
 - Careers
 - Contact US

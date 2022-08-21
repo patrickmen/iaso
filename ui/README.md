@@ -18,7 +18,7 @@ An solution for website design.
 - Pipeline
 - Partnering
   - Academic Institution
-  - Biotech Company
+  - Industrial Institution
 - News
 - Careers
 - Contact US

@@ -205,13 +205,13 @@ export async function removeAcademicInstitution(params) {
   });
 }
 
-// BiotechCompany API
-export async function queryBiotechCompanyList(params) {
-  return request(`/api/v1/partnering/biotech-company?${stringify(params)}`);
+// Industrial Institution API
+export async function queryIndustrialInstitutionList(params) {
+  return request(`/api/v1/partnering/industrial-institution?${stringify(params)}`);
 }
 
-export async function addBiotechCompany(params) {
-  return request(`/api/v1/partnering/biotech-company?lang=${params.lang}`, {
+export async function addIndustrialInstitution(params) {
+  return request(`/api/v1/partnering/industrial-institution?lang=${params.lang}`, {
     method: 'POST',
     body: {
       ...params,
@@ -220,8 +220,8 @@ export async function addBiotechCompany(params) {
   });
 }
 
-export async function updateBiotechCompany(params) {
-  return request(`/api/v1/partnering/biotech-company/${params.id}?lang=${params.lang}`, {
+export async function updateIndustrialInstitution(params) {
+  return request(`/api/v1/partnering/industrial-institution/${params.id}?lang=${params.lang}`, {
     method: 'PUT',
     body: {
       ...params,
@@ -230,8 +230,8 @@ export async function updateBiotechCompany(params) {
   });
 }
 
-export async function removeBiotechCompany(params) {
-  return request(`/api/v1/partnering/biotech-company/${params.id}?lang=${params.lang}`, {
+export async function removeIndustrialInstitution(params) {
+  return request(`/api/v1/partnering/industrial-institution/${params.id}?lang=${params.lang}`, {
     method: 'DELETE',
     body: {
       method: 'delete',
